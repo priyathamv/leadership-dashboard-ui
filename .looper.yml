@@ -9,3 +9,4 @@ flows:
     - ls
     - npm install
     - ls
+    - npm publish

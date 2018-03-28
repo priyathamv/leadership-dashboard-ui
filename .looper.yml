@@ -1,0 +1,11 @@
+tools:
+  nodejs: 9.5.0
+  npm: 5.6.0
+
+flows:
+  default:
+    - node -v
+    - npm -v
+    - ls
+    - npm install
+    - ls

@@ -6,7 +6,4 @@ flows:
   default:
     - node -v
     - npm -v
-    - ls
-    - npm install
-    - ls
     - npm publish

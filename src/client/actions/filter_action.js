@@ -11,8 +11,6 @@ export default function updateFilter(currentFilters, updatedFilter) {
       dm          = "ALL",
       category    = "ALL";
 
-  console.log(currentFilters, updatedFilter);
-
   if(updatedFilter && (updatedFilter.filterName == "NODE" || updatedFilter.filterName == "LT METRIC")) {
     node        = currentFilters[0].currentValue;
     metric      = currentFilters[1].currentValue;
@@ -58,7 +56,7 @@ export default function updateFilter(currentFilters, updatedFilter) {
     }
   }
 
-  const request_url = `http://localhost:8585/api/dm-goals?node=${node}&metric=${metric}&sbu=${sbu}&cbu=${cbu}&bu=${bu}&department=${department}&dm=${dm}&category=${category}`;
+  const request_url = `${API_URL}/api/dm-goals?node=${node}&metric=${metric}&sbu=${sbu}&cbu=${cbu}&bu=${bu}&department=${department}&dm=${dm}&category=${category}`;
   console.log(request_url);
   const filtersPromise = axios.get(request_url);
 

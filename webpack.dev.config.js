@@ -1,6 +1,6 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -24,11 +24,15 @@ module.exports = {
       }
     } ]
   },
-  //html-webpack-plugin allows webpack to use an html file that we have created,
-  //make a copy and then insert the script that refers to the bundled (compiled) js file.
   plugins: [
+    // new webpack.optimize.UglifyJsPlugin({
+    //   minimize: true,
+    //   compress: {
+    //       warnings: false
+    //   }
+    // }),
     new webpack.DefinePlugin({
-      'NODE_ENV': JSON.stringify('local'),
+      'NODE_ENV': JSON.stringify('dev'),
       'API_URL': JSON.stringify('http://localhost:8585')
     }),
     new HtmlWebpackPlugin({

@@ -1,19 +1,13 @@
-import express from 'express';
-import path from 'path';
+var express    = require('express');
+var path    = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 12234;
 
-
-const staticPath = express.static(path.join(__dirname, '../'));
-const indexPath = path.join(__dirname, '../index.html');
-
-app.use("/static", staticPath);
-
-app.get('/', (req, res) => {
-  res.sendFile(indexPath);
+app.get('/', function(req, res){
+  res.json({ message: 'Leadership Dashboard!' });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, function(){
   console.log(`Listening on port: ${PORT}`);
 });

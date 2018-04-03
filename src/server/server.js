@@ -8,6 +8,6 @@ app.get('/', function(req, res){
   res.json({ message: 'Leadership Dashboard!' });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, function(){
   console.log("Listening on port: " + PORT);
 });

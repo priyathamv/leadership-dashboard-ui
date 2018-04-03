@@ -33,7 +33,7 @@ module.exports = {
     // }),
     new webpack.DefinePlugin({
       'NODE_ENV': JSON.stringify('dev'),
-      'API_URL': JSON.stringify('http://localhost:8585')
+      'API_URL': JSON.stringify('http://10.37.115.116:8080')
     }),
     new HtmlWebpackPlugin({
       template:'./src/client/public/index.html',

@@ -1,8 +1,9 @@
 {
   "name": "@walmart/leadership-dashboard-ui",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Dashboard for Forecasting Analytics",
   "main": "./build/client.js",
+  "files": [ "build/" ],
   "repository": {
     "type": "git",
     "url": "https://gecgithub01.walmart.com/v0p005f/leadership-dashboard-ui.git"

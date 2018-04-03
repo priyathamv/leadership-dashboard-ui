@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 
 const app = express();
-const PORT = process.env.PORT || 12234;
+const PORT = 8080;
 
 
 const staticPath = express.static(path.join(__dirname, '../'));

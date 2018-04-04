@@ -28,11 +28,13 @@ module.exports = {
   //make a copy and then insert the script that refers to the bundled (compiled) js file.
   plugins: [
     new webpack.DefinePlugin({
-      'NODE_ENV': JSON.stringify('local'),
+      'process.env':{
+        'NODE_ENV': JSON.stringify('dev')
+      },
       'API_URL': JSON.stringify('http://localhost:8585')
     }),
     new HtmlWebpackPlugin({
-      template:'./src/client/public/index.html',
+      template:'./src/client/index.html',
       filename: 'index.html',
       inject: 'body',
       chunks: ['amcharts.js', 'client.js']

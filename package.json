@@ -3,7 +3,9 @@
   "version": "0.0.9",
   "description": "Dashboard for Forecasting Analytics",
   "main": "./build/client.js",
-  "files": [ "build/" ],
+  "files": [
+    "build/"
+  ],
   "repository": {
     "type": "git",
     "url": "https://gecgithub01.walmart.com/v0p005f/leadership-dashboard-ui.git"
@@ -30,7 +32,7 @@
     "nodemon": "^1.17.2",
     "parallelshell": "^3.0.2",
     "react-addons-test-utils": "^0.14.7",
-    "webpack": "^1.12.9"
+    "webpack": "2.6.1"
   },
   "dependencies": {
     "@amcharts/amcharts3-react": "^3.0.0",

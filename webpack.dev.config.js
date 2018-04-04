@@ -13,16 +13,14 @@ module.exports = {
     filename: '[name].js'
   },
   module: {
-    loaders: [
-    {
-      test: /.js$/,
-      include: path.join(__dirname, 'src'),
-      exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        presets: ['react', 'es2015', 'stage-1']
+    rules: [
+      {
+        test: /.js$/,
+        include: path.join(__dirname, 'src'),
+        exclude: /node_modules/,
+        loader: 'babel-loader?' + JSON.stringify({ presets: ['react', 'es2015', 'stage-1'] })
       }
-    } ]
+    ]
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -31,11 +29,13 @@ module.exports = {
       },
       'API_URL': JSON.stringify('http://10.37.115.116:8080')
     }),
-    new webpack.optimize.DedupePlugin(), //dedupe similar code
-    new webpack.optimize.UglifyJsPlugin({ //minify everything
-      compress:{ warnings: true }
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
     }),
-    // new webpack.optimize.AggressiveMergingPlugin(), //Merge chunks
+    new webpack.optimize.UglifyJsPlugin({
+      compress:{ warnings: true },
+      sourceMap: true
+    }),
     new HtmlWebpackPlugin({
       template:'./src/client/index.html',
       filename: 'index.html',

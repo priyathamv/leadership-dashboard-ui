@@ -1,6 +1,6 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -13,19 +13,15 @@ module.exports = {
     filename: '[name].js'
   },
   module: {
-    loaders: [
-    {
-      test: /.js$/,
-      include: path.join(__dirname, 'src'),
-      exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        presets: ['react', 'es2015', 'stage-1']
+    rules: [
+      {
+        test: /.js$/,
+        include: path.join(__dirname, 'src'),
+        exclude: /node_modules/,
+        loader: 'babel-loader?' + JSON.stringify({ presets: ['react', 'es2015', 'stage-1'] })
       }
-    } ]
+    ]
   },
-  //html-webpack-plugin allows webpack to use an html file that we have created,
-  //make a copy and then insert the script that refers to the bundled (compiled) js file.
   plugins: [
     new webpack.DefinePlugin({
       'process.env':{

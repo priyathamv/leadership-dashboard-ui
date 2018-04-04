@@ -7,6 +7,12 @@ const PORT = (process.argv.indexOf("-p") == -1) ? 8080 : process.argv[process.ar
 const staticPath = express.static(path.join(__dirname, '../'));
 const indexPath = path.join(__dirname, '../index.html');
 
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
+
 app.use("/static", staticPath);
 
 app.get('/health', function(req, res){

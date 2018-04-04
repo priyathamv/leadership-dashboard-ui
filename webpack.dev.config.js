@@ -28,10 +28,7 @@ module.exports = {
       'process.env':{
         'NODE_ENV': JSON.stringify('production')
       },
-      'API_URL': JSON.stringify('http://api.stg.forecasting-analytics.prod.walmart.com/')
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
+      'API_URL': JSON.stringify('http://api.stg.forecasting-analytics.prod.walmart.com')
     }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
@@ -48,11 +45,10 @@ module.exports = {
         join_vars: true
       }
     }),
-    new webpack.HashedModuleIdsPlugin(),
     new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.js$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.svg?.+$/,
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,
       threshold: 10240,
       minRatio: 0.8
     }),

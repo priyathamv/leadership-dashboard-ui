@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
   devtool: 'source-map',
@@ -27,20 +28,45 @@ module.exports = {
       'process.env':{
         'NODE_ENV': JSON.stringify('production')
       },
-      'API_URL': JSON.stringify('http://10.37.115.116:8080')
+      'API_URL': JSON.stringify('http://api.stg.forecasting-analytics.prod.walmart.com/')
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     }),
     new webpack.optimize.UglifyJsPlugin({
-      compress:{ warnings: true },
-      sourceMap: true
+      sourceMap: true,
+      compress: {
+        warnings: true,
+        screw_ie8: true,
+        conditionals: true,
+        unused: true,
+        comparisons: true,
+        sequences: true,
+        dead_code: true,
+        evaluate: true,
+        if_return: true,
+        join_vars: true
+      }
+    }),
+    new webpack.HashedModuleIdsPlugin(),
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.svg?.+$/,
+      threshold: 10240,
+      minRatio: 0.8
     }),
     new HtmlWebpackPlugin({
       template:'./src/client/index.html',
       filename: 'index.html',
       inject: 'body',
-      chunks: ['amcharts.js', 'client.js']
+      chunks: ['amcharts.js', 'client.js'],
+      minify: {
+        collapseWhitespace: true,
+        collapseInlineTagWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true
+      }
     })
   ]
 };

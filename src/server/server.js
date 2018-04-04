@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 
 const app = express();
-const PORT = 8080;
+const PORT = (process.argv.indexOf("-p") == -1) ? 8080 : process.argv[process.argv.indexOf("-p") + 1];
 
 const staticPath = express.static(path.join(__dirname, '../'));
 const indexPath = path.join(__dirname, '../index.html');

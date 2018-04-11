@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   devtool: 'source-map',
@@ -24,11 +25,23 @@ module.exports = {
     ]
   },
   plugins: [
+    // new CopyWebpackPlugin([
+    //   { from: path.join(__dirname, 'src/client/public/'),
+    //     to: path.join(__dirname, 'build/'),
+    //     cache: true
+    //   }
+    // ]),
+    // new CopyWebpackPlugin([
+    //   { from: path.join(__dirname, 'src/client/public/roboto.css'),
+    //     to: path.join(__dirname, 'build/roboto.css'),
+    //     cache: true
+    //   }
+    // ]),
     new webpack.DefinePlugin({
       'process.env':{
-        'NODE_ENV': JSON.stringify('production')
+        'NODE_ENV': JSON.stringify('production') // Required to make react faster, as it doesnt execute any dev checks
       },
-      'API_URL': JSON.stringify('http://api.stg.forecasting-analytics.prod.walmart.com')
+      'API_URL': JSON.stringify('http://localhost:8585')//http://api.stg.forecasting-analytics.prod.walmart.com')
     }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,

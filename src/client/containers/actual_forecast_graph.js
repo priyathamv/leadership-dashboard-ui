@@ -13,9 +13,9 @@ class ActualForecast extends React.Component {
         "hideCredits": true,
         "type": "serial",
         "theme": "light",
-        "titles": [{
-          "text": "Actuals and Forecast"
-        }],
+        // "titles": [{
+        //   "text": "Actuals and Forecast"
+        // }],
         "dataProvider": [],
         "valueAxes": [{
           "gridColor": "#FFFFFF",

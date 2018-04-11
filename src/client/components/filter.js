@@ -32,13 +32,12 @@ export default class Filter extends React.Component {
     this.props.filterChange({ filterName: this.props.filterObj.name,
                               currentFilter: value })
   }
-
+  // <MenuItem key="ALL" value="ALL" primaryText="ALL" />
   render() {
     return (
       <div>
         <Subheader style={styles.headerStyle}>{this.props.filterObj.name}</Subheader>
         <DropDownMenu selectedMenuItemStyle={{ color: '#00BCD4' }} value={this.props.filterObj.currentValue} onChange={this.handleFilterChange}>
-          <MenuItem key="ALL" value="ALL" primaryText="ALL" />
           {this.renderFilterList()}
         </DropDownMenu>
       </div>

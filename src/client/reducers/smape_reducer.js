@@ -1,6 +1,8 @@
 export default function(state = [], action) {
   switch (action.type) {
     case 'FILTER_CHANGED':
+      console.log('Smape values');
+      console.log(action.payload.data.forecastActualsAndSmape.smapes);
       return action.payload.data.forecastActualsAndSmape.smapes;
     default:
       return state;

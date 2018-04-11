@@ -1,27 +1,27 @@
 const initialDmPerformances = [
       {
-        "name": "Current Week",
+        "name": "Cur Wk",
         "tySmape": 0.0,
         "goal": 0.0,
         "difference": 0.0,
         "achieved": true
       },
       {
-        "name": "Previous Week",
+        "name": "Prev Wk",
         "tySmape": 0.0,
         "goal": 0.0,
         "difference": 0.0,
         "achieved": true
       },
       {
-        "name": "Previous Qtr",
+        "name": "Prev Qtr",
         "tySmape": 0.0,
         "goal": 0.0,
         "difference": 0.0,
         "achieved": true
       },
       {
-        "name": "Previous Year",
+        "name": "Prev Yr",
         "tySmape": 0.0,
         "goal": 0.0,
         "difference": 0.0,

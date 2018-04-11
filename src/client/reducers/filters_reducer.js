@@ -10,6 +10,16 @@ const initialFilters = [
       "values": [ "LEAD TIME", "ONE WEEK", "HORIZON" ]
     },
     {
+      "name": "SALES METRIC",
+      "currentValue": "MINUS OUTS",
+      "values": [ "MINUS OUTS", "MINUS OUTS & PROMO", "ALL INCLUDED" ]
+    },
+    {
+      "name": "SALES > 6",
+      "currentValue": "YES",
+      "values": [ "YES", "ALL" ]
+    },
+    {
       "name": "SBU",
       "currentValue": "ALL",
       "values": [ "ALL" ]

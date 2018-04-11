@@ -13,9 +13,9 @@ class Smape extends React.Component {
         "hideCredits": true,
         "type": "serial",
         "theme": "light",
-        "titles": [{
-          "text": "Smape"
-        }],
+        // "titles": [{
+        //   "text": "Smape"
+        // }],
         "dataProvider": [],
         "valueAxes": [{
           "gridColor": "#FFFFFF",

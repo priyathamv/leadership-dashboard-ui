@@ -3,7 +3,9 @@ import axios from 'axios';
 export default function updateFilter(currentFilters, updatedFilter) {
 
   var node        = "STORE",
-      metric      = "LEAD TIME",
+      ltMetric    = "LEAD TIME",
+      salesMetric = "MINUS OUTS",
+      salesGt6    = "YES",
       sbu         = "ALL",
       cbu         = "ALL",
       bu          = "ALL",
@@ -11,18 +13,25 @@ export default function updateFilter(currentFilters, updatedFilter) {
       dm          = "ALL",
       category    = "ALL";
 
-  if(updatedFilter && (updatedFilter.filterName == "NODE" || updatedFilter.filterName == "LT METRIC")) {
+  if(updatedFilter && ( updatedFilter.filterName == "NODE" ||
+                        updatedFilter.filterName == "LT METRIC" ||
+                        updatedFilter.filterName == "SALES METRIC" ||
+                        updatedFilter.filterName == "SALES > 6") ) {
     node        = currentFilters[0].currentValue;
-    metric      = currentFilters[1].currentValue;
-    sbu         = currentFilters[2].currentValue;
-    cbu         = currentFilters[3].currentValue;
-    bu          = currentFilters[4].currentValue;
-    department  = currentFilters[5].currentValue;
-    dm          = currentFilters[6].currentValue;
-    category    = currentFilters[7].currentValue;
+    ltMetric    = currentFilters[1].currentValue;
+    salesMetric = currentFilters[2].currentValue;
+    salesGt6    = currentFilters[3].currentValue;
+    sbu         = currentFilters[4].currentValue;
+    cbu         = currentFilters[5].currentValue;
+    bu          = currentFilters[6].currentValue;
+    department  = currentFilters[7].currentValue;
+    dm          = currentFilters[8].currentValue;
+    category    = currentFilters[9].currentValue;
   } else {
     node        = currentFilters[0].currentValue;
-    metric      = currentFilters[1].currentValue;
+    ltMetric    = currentFilters[1].currentValue;
+    salesMetric = currentFilters[2].currentValue;
+    salesGt6    = currentFilters[3].currentValue;
   }
 
   if(updatedFilter){
@@ -32,7 +41,13 @@ export default function updateFilter(currentFilters, updatedFilter) {
         node = changedFilter;
         break;
       case "LT METRIC":
-        metric = changedFilter;
+        ltMetric = changedFilter;
+        break;
+      case "SALES METRIC":
+        salesMetric = changedFilter;
+        break;
+      case "SALES > 6":
+        salesGt6 = changedFilter;
         break;
       case "SBU":
         sbu = changedFilter;
@@ -56,7 +71,7 @@ export default function updateFilter(currentFilters, updatedFilter) {
     }
   }
 
-  const request_url = `${API_URL}/api/dm-goals?node=${node}&metric=${metric}&sbu=${sbu}&cbu=${cbu}&bu=${bu}&department=${department}&dm=${dm}&category=${category}`;
+  const request_url = `${API_URL}/api/dm-goals?node=${node}&ltMetric=${ltMetric}&salesMetric=${salesMetric}&salesGt6=${salesGt6}&sbu=${sbu}&cbu=${cbu}&bu=${bu}&department=${department}&dm=${dm}&category=${category}`;
   console.log(request_url);
   const filtersPromise = axios.get(request_url);
 

@@ -3,6 +3,13 @@ import { connect } from 'react-redux';
 
 import AmCharts from '@amcharts/amcharts3-react';
 
+const styles = {
+  graphStyle: {
+    backgroundColor: '#FFFFFF',
+    marginBottom: '10px',
+  }
+}
+
 class ActualForecast extends React.Component {
   constructor(props) {
     super(props);
@@ -85,7 +92,7 @@ class ActualForecast extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={styles.graphStyle} >
         {this.renderActualForecasts()}
       </div>
     )

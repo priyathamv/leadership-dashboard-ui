@@ -13,7 +13,7 @@ import DmRow from '../components/dm_row';
 
 const styles = {
   tableStyle: {
-    paddingRight: "50px"
+    paddingRight: "10px"
   }
 }
 

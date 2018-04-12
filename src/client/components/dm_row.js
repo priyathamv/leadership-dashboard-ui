@@ -18,13 +18,17 @@ class DmRow extends React.Component {
   render() {
     return (
       <TableRow>
-        <TableRowColumn><span>{this.props.dmPerformance.name}</span></TableRowColumn>
-        <TableRowColumn><span>{this.props.dmPerformance.tySmape}%</span></TableRowColumn>
-        <TableRowColumn><span>{this.props.dmPerformance.goal == 0.0 ? 'NA' : (this.props.dmPerformance.goal + '%') }</span></TableRowColumn>
-        <TableRowColumn><span>{this.props.dmPerformance.difference}%</span></TableRowColumn>
+        <TableRowColumn><span>{ this.props.dmPerformance.name }</span></TableRowColumn>
+        <TableRowColumn><span>{ this.props.dmPerformance.tySmape }%</span></TableRowColumn>
+        <TableRowColumn><span>{ this.props.dmPerformance.goal == 0.0 ? 'NA' : (this.props.dmPerformance.goal + '%') }</span></TableRowColumn>
+        <TableRowColumn><span>{ this.props.dmPerformance.difference }%</span></TableRowColumn>
         <TableRowColumn>
           <span>
-            {(this.props.dmPerformance.achieved) ? <ActionDone style={doneStyles} /> : <ContentClear style={clearStyles} /> }
+            {
+              (this.props.dmPerformance.achieved || (this.props.dmPerformance.goal == 0.0)) ? 
+              <ActionDone style={doneStyles} /> :
+              <ContentClear style={clearStyles} />
+            }
           </span>
         </TableRowColumn>
       </TableRow>

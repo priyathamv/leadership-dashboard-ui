@@ -8,16 +8,19 @@ import updateFilter from '../actions/filter_action';
 import Filter from '../components/filter';
 
 const styles = {
-  filtersStyle: {
+  root: {
     display: 'flex',
     flexWrap: 'wrap',
-    height: '120px'
+    justifyContent: 'space-around',
+    height: '75px',
   },
   gridList: {
     display: 'flex',
-    flexWrap: 'nowrap',
-    overflowX: 'auto',
-    width: "100%"
+    flexWrap: 'wrap',
+    width: '100%',
+  },
+  filterStyle: {
+    padding: '0 10px',
   }
 };
 
@@ -32,7 +35,7 @@ class FilterList extends React.Component {
     return (
       filters.map((filterObj) => {
         return (
-          <GridTile key={filterObj.name} >
+          <GridTile key={filterObj.name} style={styles.filterStyle} >
             <Filter key={filterObj.name} filterChange={(updatedFilter) => this.props.updateFilter(this.props.filters, updatedFilter)} filterObj={filterObj}></Filter>
           </GridTile>
         )
@@ -42,8 +45,8 @@ class FilterList extends React.Component {
 
   render() {
     return (
-      <div style={styles.filtersStyle}>
-        <GridList style={styles.gridList} cols={2.2}>
+      <div style={styles.root}>
+        <GridList style={styles.gridList} cols={10}>
           {this.renderFilterList(this.props.filters)}
         </GridList>
       </div>

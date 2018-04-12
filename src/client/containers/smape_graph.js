@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 
 import AmCharts from '@amcharts/amcharts3-react';
 
+const styles = {
+  graphStyle: {
+    backgroundColor: '#FFFFFF',
+  }
+}
+
 class Smape extends React.Component {
   constructor(props) {
     super(props);
@@ -67,7 +73,7 @@ class Smape extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={styles.graphStyle} >
         {this.renderSmape()}
       </div>
     )

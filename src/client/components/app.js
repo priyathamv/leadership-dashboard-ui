@@ -21,6 +21,9 @@ const styles = {
   },
   filtersStyle: {
     height: "100px"
+  },
+  container: {
+    margin: '0 25px',
   }
 };
 
@@ -28,13 +31,15 @@ const App = () => (
   <MuiThemeProvider>
     <div>
       <AppBar showMenuIconButton={false} title="Forecasting Analytics Dashboard - Store" />
-      <FilterList/>
-      <div style={styles.tableDiv}>
-        <DmTable />
-      </div>
-      <div style={styles.graphDiv}>
-        <ActualForecast />
-        <Smape />
+      <div style={ styles.container } >
+        <FilterList/>
+        <div style={styles.tableDiv}>
+          <DmTable />
+        </div>
+        <div style={styles.graphDiv}>
+          <ActualForecast />
+          <Smape />
+        </div>
       </div>
     </div>
   </MuiThemeProvider>

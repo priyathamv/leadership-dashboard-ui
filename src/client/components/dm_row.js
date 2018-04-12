@@ -3,8 +3,8 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import ActionDone from 'material-ui/svg-icons/action/done';
-import ContentClear from 'material-ui/svg-icons/content/clear';
+// import ActionDone from 'material-ui/svg-icons/action/done';
+// import ContentClear from 'material-ui/svg-icons/content/clear';
 
 const doneStyles = {
   color: '66BB6A'
@@ -13,6 +13,10 @@ const doneStyles = {
 const clearStyles = {
   color: 'FF7043'
 }
+
+// <span>
+//   {(this.props.dmPerformance.achieved) ? <ActionDone style={doneStyles} /> : <ContentClear style={clearStyles} /> }
+// </span>
 
 class DmRow extends React.Component {
   render() {
@@ -23,9 +27,7 @@ class DmRow extends React.Component {
         <TableRowColumn><span>{this.props.dmPerformance.goal == 0.0 ? 'NA' : (this.props.dmPerformance.goal + '%') }</span></TableRowColumn>
         <TableRowColumn><span>{this.props.dmPerformance.difference}%</span></TableRowColumn>
         <TableRowColumn>
-          <span>
-            {(this.props.dmPerformance.achieved) ? <ActionDone style={doneStyles} /> : <ContentClear style={clearStyles} /> }
-          </span>
+
         </TableRowColumn>
       </TableRow>
     )

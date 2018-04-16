@@ -13,7 +13,8 @@ import DmRow from '../components/dm_row';
 
 const styles = {
   tableStyle: {
-    paddingRight: "10px"
+    marginRight: '10px',
+    boxShadow: '2px 2px 8px 0px rgba(0, 0, 0, 0.1)',
   }
 }
 

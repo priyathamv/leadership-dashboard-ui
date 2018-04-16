@@ -12,12 +12,15 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    height: '75px',
+    height: '80px',
+    margin: '10px 0',
+    boxShadow: '2px 2px 8px 0px rgba(0, 0, 0, 0.1)',
   },
   gridList: {
     display: 'flex',
     flexWrap: 'wrap',
     width: '100%',
+    backgroundColor: '#FFFFFF',
   },
   filterStyle: {
     padding: '0 10px',

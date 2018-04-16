@@ -21,11 +21,14 @@ class DmRow extends React.Component {
         <TableRowColumn><span>{ this.props.dmPerformance.name }</span></TableRowColumn>
         <TableRowColumn><span>{ this.props.dmPerformance.tySmape }%</span></TableRowColumn>
         <TableRowColumn><span>{ this.props.dmPerformance.goal == 0.0 ? 'NA' : (this.props.dmPerformance.goal + '%') }</span></TableRowColumn>
-        <TableRowColumn><span>{ this.props.dmPerformance.difference }%</span></TableRowColumn>
+        <TableRowColumn>
+          <span>{ (this.props.dmPerformance.goal == 0.0) ? (this.props.dmPerformance.tySmape) : (this.props.dmPerformance.difference) }%
+          </span>
+        </TableRowColumn>
         <TableRowColumn>
           <span>
             {
-              (this.props.dmPerformance.achieved || (this.props.dmPerformance.goal == 0.0)) ? 
+              (this.props.dmPerformance.achieved || (this.props.dmPerformance.goal == 0.0)) ?
               <ActionDone style={doneStyles} /> :
               <ContentClear style={clearStyles} />
             }

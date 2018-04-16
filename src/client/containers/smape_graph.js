@@ -6,6 +6,7 @@ import AmCharts from '@amcharts/amcharts3-react';
 const styles = {
   graphStyle: {
     backgroundColor: '#FFFFFF',
+    boxShadow: '2px 2px 8px 0px rgba(0, 0, 0, 0.1)',
   }
 }
 
@@ -24,30 +25,40 @@ class Smape extends React.Component {
         // }],
         "dataProvider": [],
         "valueAxes": [{
-          "gridColor": "#FFFFFF",
+          "id": "v1",
+          "title": "SMAPE",
+          "position": "left",
+          "autoGridCount": false,
+          "labelFunction": function(value) {
+            return Math.round(value) + "%";
+          },
+          "gridColor": "#E6E6E6",
           "gridAlpha": 0.2,
-          "dashLength": 0
+          "dashLength": 0,
         }],
         "gridAboveGraphs": true,
-        "startDuration": 1,
+        "startDuration": 0,
         "graphs": [{
           "title": "LY Smape",
           "balloonText": "[[title]]: <b>[[value]]</b>",
-          "bullet": "round",
-          "bulletSize": 5,
-          "bulletBorderColor": "#ffffff",
-          "bulletBorderAlpha": 1,
-          "bulletBorderThickness": 2,
-          "valueField": "lySmape"
+          "lineColor": "#A5D6A7",
+          "lineThickness": 2,
+          "type": "smoothedLine",
+          "valueField": "lySmape",
+          "showBalloon": false
         }, {
           "title": "TY Smape",
           "balloonText": "[[title]]: <b>[[value]]</b>",
+          "lineColor": "#43A047",
+          "lineThickness": 2,
           "bullet": "round",
-          "bulletSize": 5,
+          "bulletSize": 1,
           "bulletBorderColor": "#ffffff",
           "bulletBorderAlpha": 1,
-          "bulletBorderThickness": 2,
-          "valueField": "tySmape"
+          "bulletBorderThickness": 1,
+          "type": "smoothedLine",
+          "valueField": "tySmape",
+          "showBalloon": false
         }],
         "chartCursor": {
           "categoryBalloonEnabled": true,

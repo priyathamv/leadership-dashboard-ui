@@ -23,7 +23,7 @@ const styles = {
     height: "100px"
   },
   container: {
-    margin: '0 25px',
+    margin: '10px 25px',
   }
 };
 

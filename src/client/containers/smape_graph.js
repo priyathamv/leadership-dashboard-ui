@@ -97,6 +97,13 @@ class Smape extends React.Component {
           "fillColor": "#FFFFFF",
           "textAlign": "left",
         },
+        "categoryAxis": {
+          "gridPosition": "start",
+          "gridAlpha": 0.05,
+          "fontSize": 7,
+          "autoGridCount": false,
+          "gridCount": 52
+        },
         "legend": {
           "markerSize": 10,
           "autoMargins": false,

@@ -38,15 +38,20 @@ class Smape extends React.Component {
         "graphs": [{
           "title": "LY Smape",
           "balloonText": "[[title]]: <b>[[value]]</b>",
-          "lineColor": "#80DEEA",
+          "lineColor": "#e57373",
           "lineThickness": 2,
+          "bullet": "round",
+          "bulletSize": 1,
+          "bulletBorderColor": "#ffffff",
+          "bulletBorderAlpha": 1,
+          "bulletBorderThickness": 1,
           "type": "smoothedLine",
           "valueField": "lySmape",
           "balloonText":
             "<div style='background-color: #FFFFFF; padding: 5px 10px; border-color: #FFFFFF;'>" +
               "<div style='color: #2E2E2E; margin-bottom: 3px; text-decoration: underline;'><b>Week [[week]]</b></div>" +
-              "<div style='color: #80DEEA; margin-bottom: 3px;'><b>LY Smape:</b> [[lySmape]]</div>" +
-              "<div style='color: #00ACC1; margin-bottom: 3px;'><b>TY Smape:</b> [[tySmape]]</div>" +
+              "<div style='color: #e57373; margin-bottom: 3px;'><b>LY Smape:</b> [[lySmape]]</div>" +
+              "<div style='color: #e53935; margin-bottom: 3px;'><b>TY Smape:</b> [[tySmape]]</div>" +
             "</div>",
           "balloonFunction": function(item, graph) {
             var result = graph.balloonText;
@@ -71,13 +76,8 @@ class Smape extends React.Component {
         }, {
           "title": "TY Smape",
           "balloonText": "[[title]]: <b>[[value]]</b>",
-          "lineColor": "#00ACC1",
+          "lineColor": "#e53935",
           "lineThickness": 2,
-          "bullet": "round",
-          "bulletSize": 1,
-          "bulletBorderColor": "#ffffff",
-          "bulletBorderAlpha": 1,
-          "bulletBorderThickness": 1,
           "type": "smoothedLine",
           "valueField": "tySmape",
           "showBalloon": false
@@ -110,13 +110,31 @@ class Smape extends React.Component {
           "marginRight": 75,
           "valueWidth": 90,
           "fontSize": 10,
-        }
+        },
+        "allLabels": [
+      		{
+      			"text": "Loading...",
+      			"bold": true,
+            "color": "#e53935",
+            "align": "center",
+      			"y": 75,
+      		},
+          {
+      			"text": "Please wait, while we're fetching the data!",
+            "color": "#e57373",
+            "align": "center",
+      			"y": 90,
+      		}
+      	],
       }
     }
   }
 
   renderSmape() {
-    var configUpdated = Object.assign({}, this.state.config, {dataProvider: this.props.smapeList});
+
+    var configUpdated = (this.props.smapeList.length > 0 ) ?
+      Object.assign({}, this.state.config, {dataProvider: this.props.smapeList, allLabels: []}) :
+      Object.assign({}, this.state.config, {dataProvider: this.props.smapeList});
     return (
       <AmCharts.React style={{ width: "100%", height: "180px" }} options={configUpdated} />
     )

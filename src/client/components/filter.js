@@ -6,6 +6,9 @@ import MenuItem from 'material-ui/MenuItem';
 const styles = {
   activeColor: {
     color: '#00BCD4'
+  },
+  customWidth: {
+    width: '100%'
   }
 }
 
@@ -39,6 +42,9 @@ export default class Filter extends React.Component {
           value={ this.props.filterObj.currentValue }
           onChange={ this.handleFilterChange }
           selectedMenuItemStyle={ styles.activeColor }
+          style={ styles.customWidth }
+          floatingLabelFixed={ true }
+          autoWidth={ true }
         >
           {this.renderFilterList()}
         </SelectField>

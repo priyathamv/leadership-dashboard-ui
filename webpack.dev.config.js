@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -24,18 +25,12 @@ module.exports = {
     ]
   },
   plugins: [
-    // new CopyWebpackPlugin([
-    //   { from: path.join(__dirname, 'src/client/public/'),
-    //     to: path.join(__dirname, 'build/'),
-    //     cache: true
-    //   }
-    // ]),
-    // new CopyWebpackPlugin([
-    //   { from: path.join(__dirname, 'src/client/public/roboto.css'),
-    //     to: path.join(__dirname, 'build/roboto.css'),
-    //     cache: true
-    //   }
-    // ]),
+    new CopyWebpackPlugin([
+      { from: path.join(__dirname, 'src/client/public/'),
+        to: path.join(__dirname, 'build/'),
+        cache: true
+      }
+    ]),
     new webpack.DefinePlugin({
       'process.env':{
         'NODE_ENV': JSON.stringify('production') // Required to make react faster, as it doesnt execute any dev checks

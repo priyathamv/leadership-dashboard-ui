@@ -1,7 +1,9 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
 
+import WalmartLogo from './walmart_logo';
 import FilterList from '../containers/filter-list';
 import DmTable from '../containers/dm_table';
 
@@ -30,7 +32,10 @@ const styles = {
 const App = () => (
   <MuiThemeProvider>
     <div>
-      <AppBar showMenuIconButton={false} title="Forecasting Analytics Dashboard - Store" />
+      <AppBar
+        iconElementLeft={ <IconButton><WalmartLogo /></IconButton> }
+        title="Forecasting Analytics Dashboard - Store"
+      />
       <div style={ styles.container } >
         <FilterList/>
         <div style={styles.tableDiv}>

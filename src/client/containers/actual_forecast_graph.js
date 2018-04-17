@@ -41,6 +41,11 @@ class ActualForecast extends React.Component {
           "balloonText": "[[title]]: <b>[[value]]</b>",
           "lineColor": "#FFAB91",
           "lineThickness": 2,
+          "bullet": "round",
+          "bulletSize": 1,
+          "bulletBorderColor": "#FFFFFF",
+          "bulletBorderAlpha": 1,
+          "bulletBorderThickness": 1,
           "type": "smoothedLine",
           "valueField": "lyForecast",
           "balloonText":
@@ -77,6 +82,11 @@ class ActualForecast extends React.Component {
           "balloonText": "[[title]]: <b>[[value]]</b>",
           "lineColor": "#90CAF9",
           "lineThickness": 2,
+          "bullet": "round",
+          "bulletSize": 1,
+          "bulletBorderColor": "#FFFFFF",
+          "bulletBorderAlpha": 1,
+          "bulletBorderThickness": 1,
           "type": "smoothedLine",
           "valueField": "lySales",
           "showBalloon": false
@@ -85,11 +95,6 @@ class ActualForecast extends React.Component {
           "balloonText": "[[title]]: <b>[[value]]</b>",
           "lineColor": "#E64A19",
           "lineThickness": 2,
-          "bullet": "round",
-          "bulletSize": 1,
-          "bulletBorderColor": "#FFFFFF",
-          "bulletBorderAlpha": 1,
-          "bulletBorderThickness": 1,
           "type": "smoothedLine",
           "valueField": "tyForecast",
           "showBalloon": false
@@ -98,11 +103,6 @@ class ActualForecast extends React.Component {
           "balloonText": "[[title]]: <b>[[value]]</b>",
           "lineColor": "#1E88E5",
           "lineThickness": 2,
-          "bullet": "round",
-          "bulletSize": 1,
-          "bulletBorderColor": "#FFFFFF",
-          "bulletBorderAlpha": 1,
-          "bulletBorderThickness": 1,
           "type": "smoothedLine",
           "valueField": "tySales",
           "showBalloon": false
@@ -114,16 +114,12 @@ class ActualForecast extends React.Component {
         },
         "categoryField": "week",
         "balloon": {
-          // "borderAlpha": 1,
-          // "fillAlpha": 1,
           "adjustBorderColor": true,
           "borderColor": "#FFFFFF",
           "borderThickness": 0,
           "color": "#000000",
           "cornerRadius": 1,
           "fillColor": "#FFFFFF",
-          // "shadowAlpha": 0.2,
-          // "shadowColor": "#000000",
           "textAlign": "left",
         },
         "categoryAxis": {
@@ -139,13 +135,30 @@ class ActualForecast extends React.Component {
           "marginRight": 75,
           "valueWidth": 90,
           "fontSize": 10,
-        }
+        },
+        "allLabels": [
+      		{
+      			"text": "Loading...",
+      			"bold": true,
+            "color": "#1E88E5",
+            "align": "center",
+      			"y": 75,
+      		},
+          {
+      			"text": "Please wait, while we're fetching the data!",
+            "color": "#90CAF9",
+            "align": "center",
+      			"y": 90,
+      		}
+      	],
       }
     }
   }
 
   renderActualForecasts() {
-    var configUpdated = Object.assign({}, this.state.config, {dataProvider: this.props.actualForecasts});
+    var configUpdated = (this.props.actualForecasts.length > 0 ) ?
+      Object.assign({}, this.state.config, {dataProvider: this.props.actualForecasts, allLabels: []}) :
+      Object.assign({}, this.state.config, {dataProvider: this.props.actualForecasts});
     return (
       <AmCharts.React style={{ width: "100%", height: "180px" }} options={configUpdated} />
     )

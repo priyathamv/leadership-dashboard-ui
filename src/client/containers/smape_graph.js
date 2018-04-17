@@ -20,9 +20,6 @@ class Smape extends React.Component {
         "hideCredits": true,
         "type": "serial",
         "theme": "light",
-        // "titles": [{
-        //   "text": "Smape"
-        // }],
         "dataProvider": [],
         "valueAxes": [{
           "id": "v1",
@@ -41,15 +38,40 @@ class Smape extends React.Component {
         "graphs": [{
           "title": "LY Smape",
           "balloonText": "[[title]]: <b>[[value]]</b>",
-          "lineColor": "#A5D6A7",
+          "lineColor": "#80DEEA",
           "lineThickness": 2,
           "type": "smoothedLine",
           "valueField": "lySmape",
-          "showBalloon": false
+          "balloonText":
+            "<div style='background-color: #FFFFFF; padding: 5px 10px; border-color: #FFFFFF;'>" +
+              "<div style='color: #2E2E2E; margin-bottom: 3px; text-decoration: underline;'><b>Week [[week]]</b></div>" +
+              "<div style='color: #80DEEA; margin-bottom: 3px;'><b>LY Smape:</b> [[lySmape]]</div>" +
+              "<div style='color: #00ACC1; margin-bottom: 3px;'><b>TY Smape:</b> [[tySmape]]</div>" +
+            "</div>",
+          "balloonFunction": function(item, graph) {
+            var result = graph.balloonText;
+            for (var key in item.dataContext) {
+              if (item.dataContext.hasOwnProperty(key) && !isNaN(item.dataContext[key])) {
+                var formatted = AmCharts.formatNumber(item.dataContext[key], {
+                  precision: -1,
+                  decimalSeparator: '.',
+                  thousandsSeparator: ','
+                }, 2);
+
+                if (item.dataContext[key] == null || item.dataContext[key] == 0.0)
+                  result = result.replace("[[" + key + "]]", "");
+                else if (key == "week")
+                  result = result.replace("[[" + key + "]]", item.dataContext[key]);
+                else
+                  result = result.replace("[[" + key + "]]", formatted + "%");
+              }
+            }
+            return result;
+          },
         }, {
           "title": "TY Smape",
           "balloonText": "[[title]]: <b>[[value]]</b>",
-          "lineColor": "#43A047",
+          "lineColor": "#00ACC1",
           "lineThickness": 2,
           "bullet": "round",
           "bulletSize": 1,
@@ -66,11 +88,22 @@ class Smape extends React.Component {
           "zoomable": false
         },
         "categoryField": "week",
-        "categoryAxis": {
-          "gridPosition": "start",
-          "gridAlpha": 0 // horizontal lines opacity
+        "balloon": {
+          "adjustBorderColor": true,
+          "borderColor": "#FFFFFF",
+          "borderThickness": 0,
+          "color": "#000000",
+          "cornerRadius": 1,
+          "fillColor": "#FFFFFF",
+          "textAlign": "left",
         },
-        "legend": {}
+        "legend": {
+          "markerSize": 10,
+          "autoMargins": false,
+          "marginRight": 75,
+          "valueWidth": 90,
+          "fontSize": 10,
+        }
       }
     }
   }

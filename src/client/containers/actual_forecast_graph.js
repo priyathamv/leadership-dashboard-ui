@@ -21,9 +21,6 @@ class ActualForecast extends React.Component {
         "hideCredits": true,
         "type": "serial",
         "theme": "light",
-        // "titles": [{
-        //   "text": "Actuals and Forecast"
-        // }],
         "dataProvider": [],
         "valueAxes": [{
           "id": "v1",
@@ -53,7 +50,7 @@ class ActualForecast extends React.Component {
               "<div style='color: #1E88E5; margin-bottom: 3px;'><b>TY Sales:</b> [[tySales]]</div>" +
               "<div style='color: #FFAB91; margin-bottom: 3px;'><b>LY Forecast:</b> [[lyForecast]]</div>" +
               "<div style='color: #90CAF9; margin-bottom: 3px;'><b>LY Sales:</b> [[lySales]]</div>" +
-              "<div style='color: #FB8C00; margin-bottom: -2px;'><b>BIAS:</b> [[bias]]</div>" +
+              "<div style='color: #e53935; margin-bottom: -2px;'><b>BIAS:</b> [[bias]]</div>" +
             "</div>",
           "balloonFunction": function(item, graph) {
             var result = graph.balloonText;
@@ -90,8 +87,8 @@ class ActualForecast extends React.Component {
           "lineThickness": 2,
           "bullet": "round",
           "bulletSize": 1,
-          "bulletBorderColor": "#ffffff",
-          "bulletBorderAlpha": 0,
+          "bulletBorderColor": "#FFFFFF",
+          "bulletBorderAlpha": 1,
           "bulletBorderThickness": 1,
           "type": "smoothedLine",
           "valueField": "tyForecast",
@@ -103,8 +100,8 @@ class ActualForecast extends React.Component {
           "lineThickness": 2,
           "bullet": "round",
           "bulletSize": 1,
-          "bulletBorderColor": "#ffffff",
-          "bulletBorderAlpha": 0,
+          "bulletBorderColor": "#FFFFFF",
+          "bulletBorderAlpha": 1,
           "bulletBorderThickness": 1,
           "type": "smoothedLine",
           "valueField": "tySales",
@@ -116,10 +113,6 @@ class ActualForecast extends React.Component {
           "zoomable": false
         },
         "categoryField": "week",
-        // "categoryAxis": {
-        //   "gridPosition": "start",
-        //   "gridAlpha": 0 // horizontal lines opacity
-        // },
         "balloon": {
           // "borderAlpha": 1,
           // "fillAlpha": 1,

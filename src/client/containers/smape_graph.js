@@ -120,7 +120,7 @@ class Smape extends React.Component {
       			"y": 75,
       		},
           {
-      			"text": "Please wait, while we're fetching the data!",
+      			"text": "Please wait, while the data is being fetched!",
             "color": "#e57373",
             "align": "center",
       			"y": 90,

@@ -13,7 +13,7 @@ const styles = {
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     height: '80px',
-    margin: '10px 0',
+    margin: '5px 0',
     boxShadow: '2px 2px 8px 0px rgba(0, 0, 0, 0.1)',
   },
   gridList: {
@@ -21,10 +21,11 @@ const styles = {
     flexWrap: 'wrap',
     width: '100%',
     backgroundColor: '#FFFFFF',
+    margin: '0',
   },
   filterStyle: {
-    padding: '0 10px',
-  }
+    padding: '0 5px',
+  },
 };
 
 class FilterList extends React.Component {
@@ -38,8 +39,12 @@ class FilterList extends React.Component {
     return (
       filters.map((filterObj) => {
         return (
-          <GridTile key={filterObj.name} style={styles.filterStyle} >
-            <Filter key={filterObj.name} filterChange={(updatedFilter) => this.props.updateFilter(this.props.filters, updatedFilter)} filterObj={filterObj}></Filter>
+          <GridTile key={ filterObj.name } style={ styles.filterStyle } >
+            <Filter
+              key={ filterObj.name }
+              filterChange={ (updatedFilter) => this.props.updateFilter(this.props.filters, updatedFilter) }
+              filterObj={ filterObj } >
+            </Filter>
           </GridTile>
         )
       })
@@ -48,9 +53,9 @@ class FilterList extends React.Component {
 
   render() {
     return (
-      <div style={styles.root}>
-        <GridList style={styles.gridList} cols={10}>
-          {this.renderFilterList(this.props.filters)}
+      <div style={ styles.root }>
+        <GridList style={ styles.gridList } cols={10}>
+          { this.renderFilterList(this.props.filters) }
         </GridList>
       </div>
     )

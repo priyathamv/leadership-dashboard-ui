@@ -7,9 +7,14 @@ const styles = {
   activeColor: {
     color: '#00BCD4'
   },
-  customWidth: {
-    width: '100%'
-  }
+  selectStyle: {
+    width: '100%',
+    fontSize: '12px',
+  },
+  labelStyle: {
+    fontSize: '15px',
+    color: '#848484',
+  },
 }
 
 export default class Filter extends React.Component {
@@ -23,7 +28,11 @@ export default class Filter extends React.Component {
     return (
       this.props.filterObj.values.map((filterValue) => {
         return (
-          <MenuItem key={filterValue} value={filterValue} primaryText={filterValue} />
+          <MenuItem
+            key={ filterValue }
+            value={ filterValue }
+            primaryText={ filterValue }
+          />
         )
       })
     )
@@ -39,10 +48,11 @@ export default class Filter extends React.Component {
       <div>
         <SelectField
           floatingLabelText={ this.props.filterObj.name }
+          floatingLabelStyle={ styles.labelStyle }
           value={ this.props.filterObj.currentValue }
           onChange={ this.handleFilterChange }
           selectedMenuItemStyle={ styles.activeColor }
-          style={ styles.customWidth }
+          style={ styles.selectStyle }
           floatingLabelFixed={ true }
           autoWidth={ true }
         >

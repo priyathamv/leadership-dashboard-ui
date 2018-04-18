@@ -25,7 +25,7 @@ const styles = {
     height: "100px"
   },
   container: {
-    margin: '10px 25px',
+    margin: '0 25px',
   }
 };
 

@@ -6,7 +6,7 @@ import AmCharts from '@amcharts/amcharts3-react';
 const styles = {
   graphStyle: {
     backgroundColor: '#FFFFFF',
-    marginBottom: '10px',
+    marginBottom: '5px',
     boxShadow: '2px 2px 8px 0px rgba(0, 0, 0, 0.1)',
   }
 }
@@ -145,7 +145,7 @@ class ActualForecast extends React.Component {
       			"y": 75,
       		},
           {
-      			"text": "Please wait, while we're fetching the data!",
+      			"text": "Please wait, while the data is being fetched!",
             "color": "#90CAF9",
             "align": "center",
       			"y": 90,

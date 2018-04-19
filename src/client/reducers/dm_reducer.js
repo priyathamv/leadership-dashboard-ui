@@ -1,4 +1,6 @@
-const initialDmPerformances = [
+const initialDmPerformances = {
+  isLoading: true,
+  data: [
       {
         "name": "Cur Wk",
         "tySmape": 0.0,
@@ -28,11 +30,12 @@ const initialDmPerformances = [
         "achieved": true
       }
     ]
+  }
 
 export default function(state = initialDmPerformances, action) {
   switch (action.type) {
     case 'FILTER_CHANGED':
-      return action.payload.data.dmGoals.dmPerformances;
+      return Object.assign({}, { isLoading: false, data: action.payload.data.dmGoals.dmPerformances });
     default:
       return state;
   }

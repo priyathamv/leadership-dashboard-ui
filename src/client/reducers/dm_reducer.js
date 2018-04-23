@@ -2,28 +2,28 @@ const initialDmPerformances = {
   isLoading: true,
   data: [
       {
-        "name": "Cur Wk",
+        "name": "CUR WEEK",
         "tySmape": 0.0,
         "goal": 0.0,
         "difference": 0.0,
         "achieved": true
       },
       {
-        "name": "Prev Wk",
+        "name": "PREV WEEK",
         "tySmape": 0.0,
         "goal": 0.0,
         "difference": 0.0,
         "achieved": true
       },
       {
-        "name": "Prev Qtr",
+        "name": "PREV QRTR",
         "tySmape": 0.0,
         "goal": 0.0,
         "difference": 0.0,
         "achieved": true
       },
       {
-        "name": "Prev Yr",
+        "name": "PREV YEAR",
         "tySmape": 0.0,
         "goal": 0.0,
         "difference": 0.0,

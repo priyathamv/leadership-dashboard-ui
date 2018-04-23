@@ -5,8 +5,14 @@ body {
   background-color: #F2F2F2;
 }
 
+.custom-tooltip {
+  background-color: #FFFFFF;
+  padding: 5px 10px;
+  width: 250px;
+  font-size: 14px;
+}
+
 .spinner {
-  color: official;
   display: inline-block;
   position: relative;
   width: 64px;

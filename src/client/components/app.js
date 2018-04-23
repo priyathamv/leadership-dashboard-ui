@@ -10,6 +10,8 @@ import DmTable from '../containers/dm_table';
 import ActualForecast from '../containers/actual_forecast_graph';
 import Smape from '../containers/smape_graph';
 
+import ErrorImpact from '../containers/error_impact';
+
 import { GridList, GridTile } from 'material-ui/GridList';
 
 const styles = {
@@ -20,6 +22,11 @@ const styles = {
   graphDiv: {
     width: "60%",
     float: "right"
+  },
+  errorImpactDiv: {
+    width: "40%",
+    height: "300px",
+    float: "left",
   },
   filtersStyle: {
     height: "100px"
@@ -44,6 +51,9 @@ const App = () => (
         <div style={styles.graphDiv}>
           <ActualForecast />
           <Smape />
+        </div>
+        <div style={ styles.errorImpactDiv }>
+          <ErrorImpact />
         </div>
       </div>
     </div>

@@ -6,31 +6,46 @@ import {
 import ActionDone from 'material-ui/svg-icons/action/done';
 import ContentClear from 'material-ui/svg-icons/content/clear';
 
-const doneStyles = {
-  color: '66BB6A'
-};
-
-const clearStyles = {
-  color: 'FF7043'
+const styles = {
+  doneStyles: {
+    color: '66BB6A',
+  },
+  clearStyles: {
+    color: 'FF7043',
+  },
+  rowStyle: {
+    height: '30px',
+    padding: '5px 10px',
+  },
 }
+
 
 class DmRow extends React.Component {
   render() {
     return (
-      <TableRow>
-        <TableRowColumn><span>{ this.props.dmPerformance.name }</span></TableRowColumn>
-        <TableRowColumn><span>{ this.props.dmPerformance.tySmape }%</span></TableRowColumn>
-        <TableRowColumn><span>{ this.props.dmPerformance.goal == 0.0 ? 'NA' : (this.props.dmPerformance.goal + '%') }</span></TableRowColumn>
-        <TableRowColumn>
-          <span>{ (this.props.dmPerformance.goal == 0.0) ? (this.props.dmPerformance.tySmape) : (this.props.dmPerformance.difference) }%
-          </span>
+      <TableRow style={ styles.rowStyle }>
+        <TableRowColumn style={ styles.rowStyle }>
+          <span>{ this.props.dmPerformance.name }</span>
         </TableRowColumn>
-        <TableRowColumn>
+
+        <TableRowColumn style={ styles.rowStyle }>
+          <span>{ this.props.dmPerformance.tySmape }%</span>
+        </TableRowColumn>
+
+        <TableRowColumn style={ styles.rowStyle }>
+          <span>{ this.props.dmPerformance.goal == 0.0 ? 'NA' : (this.props.dmPerformance.goal + '%') }</span>
+        </TableRowColumn>
+
+        <TableRowColumn style={ styles.rowStyle }>
+          <span>{ (this.props.dmPerformance.goal == 0.0) ? (this.props.dmPerformance.tySmape) : (this.props.dmPerformance.difference) }%</span>
+        </TableRowColumn>
+
+        <TableRowColumn style={ styles.rowStyle }>
           <span>
             {
               (this.props.dmPerformance.achieved || (this.props.dmPerformance.goal == 0.0)) ?
-              <ActionDone style={doneStyles} /> :
-              <ContentClear style={clearStyles} />
+              <ActionDone style={ styles.doneStyles } /> :
+              <ContentClear style={ styles.clearStyles } />
             }
           </span>
         </TableRowColumn>

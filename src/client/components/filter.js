@@ -12,7 +12,7 @@ const styles = {
     fontSize: '12px',
   },
   labelStyle: {
-    fontSize: '15px',
+    fontSize: '16px',
     color: '#848484',
   },
 }

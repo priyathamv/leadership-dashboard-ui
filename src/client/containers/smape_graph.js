@@ -110,6 +110,8 @@ class Smape extends React.Component {
           "marginRight": 75,
           "valueWidth": 90,
           "fontSize": 10,
+          "marginBottom": -5,
+          "marginTop": -10,
         },
         "allLabels": [
       		{
@@ -136,7 +138,7 @@ class Smape extends React.Component {
       Object.assign({}, this.state.config, {dataProvider: this.props.smapeList, allLabels: []}) :
       Object.assign({}, this.state.config, {dataProvider: this.props.smapeList});
     return (
-      <AmCharts.React style={{ width: "100%", height: "180px" }} options={configUpdated} />
+      <AmCharts.React style={{ width: "100%", height: "150px" }} options={configUpdated} />
     )
   }
 

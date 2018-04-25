@@ -4,6 +4,7 @@ import DmReducer from './dm_reducer';
 import ActualForecastReducer from './actual_forecast_reducer';
 import SmapeReducer from './smape_reducer';
 import ErrorImpactReducer from './error_impact_reducer';
+import Top20Reducer from './top20_reducer';
 
 const rootReducer = combineReducers({
     filters: FiltersReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     actualForecasts: ActualForecastReducer,
     smapeList: SmapeReducer,
     errorImpacts: ErrorImpactReducer,
+    top20List: Top20Reducer,
 })
 
 export default rootReducer;

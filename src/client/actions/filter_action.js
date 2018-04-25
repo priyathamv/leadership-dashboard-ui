@@ -1,7 +1,30 @@
 import axios from 'axios';
 
-export default function updateFilter(currentFilters, updatedFilter) {
+export function updateFilterForSummary(currentFilters, updatedFilter) {
+  const queryParams     = getQueryParams(currentFilters, updatedFilter);
+  const request_url     = `${API_URL}/api/dm-goals?${queryParams}`;
+  const summaryPromise  = axios.get(request_url);
 
+  console.log("Summary api URL", request_url);
+  return {
+    type: 'FILTER_CHANGED',
+    payload: summaryPromise,
+  };
+}
+
+export function updateFilterForTop20(currentFilters, updatedFilter) {
+  const queryParams     = getQueryParams(currentFilters, updatedFilter);
+  const request_url     = `${API_URL}/api/top-20?${queryParams}`;
+  const top20Promise    = axios.get(request_url);
+
+  console.log("Top20 api URL", request_url);
+  return {
+    type: 'FILTER_CHANGED_TOP20',
+    payload: top20Promise,
+  };
+}
+
+function getQueryParams(currentFilters, updatedFilter) {
   var node        = "STORE",
       ltMetric    = "LEAD TIME",
       salesMetric = "MINUS OUTS",
@@ -13,6 +36,7 @@ export default function updateFilter(currentFilters, updatedFilter) {
       dm          = "ALL",
       category    = "ALL";
 
+  // TODO: Lot of refactoring required in here!
   if(updatedFilter && ( updatedFilter.filterName == "NODE" ||
                         updatedFilter.filterName == "LT METRIC" ||
                         updatedFilter.filterName == "SALES METRIC" ||
@@ -70,13 +94,5 @@ export default function updateFilter(currentFilters, updatedFilter) {
       default:
     }
   }
-
-  const request_url = `${API_URL}/api/dm-goals?node=${node}&ltMetric=${ltMetric}&salesMetric=${salesMetric}&salesGt6=${salesGt6}&sbu=${sbu}&cbu=${cbu}&bu=${bu}&department=${department}&dm=${dm}&category=${category}`;
-  console.log(request_url);
-  const filtersPromise = axios.get(request_url);
-
-  return {
-    type: 'FILTER_CHANGED',
-    payload: filtersPromise
-  };
+  return `node=${node}&ltMetric=${ltMetric}&salesMetric=${salesMetric}&salesGt6=${salesGt6}&sbu=${sbu}&cbu=${cbu}&bu=${bu}&department=${department}&dm=${dm}&category=${category}`;
 }

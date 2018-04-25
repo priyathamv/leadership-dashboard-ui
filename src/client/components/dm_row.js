@@ -14,7 +14,7 @@ const styles = {
     color: 'FF7043',
   },
   rowStyle: {
-    height: '30px',
+    height: '40px',
     padding: '5px 10px',
   },
 }

@@ -27,16 +27,18 @@ const styles = {
     left: '41%',
   },
   rowStyle: {
-    height: '30px',
+    height: '40px',
     padding: '5px 10px',
   },
   headerStyle: {
-    height: '30px',
-    padding: '10px 10px 0px 10px',
+    height: '47px',
     backgroundColor: 'rgb(255, 255, 255)',
     boxShadow: '2px 2px 8px 0px rgba(0, 0, 0, 0.1)',
     marginBottom: '1px',
     fontSize: '18px',
+    lineHeight: '47px',
+    verticalAlign: 'middle',
+    padding: '0 10px',
   }
 }
 

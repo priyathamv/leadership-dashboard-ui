@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 
 import { GridList, GridTile } from 'material-ui/GridList';
 
-import updateFilter from '../actions/filter_action';
+import * as filterFunctions from '../actions/filter_action';
 import Filter from '../components/filter';
 
 const styles = {
@@ -32,7 +32,8 @@ class FilterList extends React.Component {
 
   // TODO: CHECK IF WE CAN DO THIS INITIAL CALL HERE!!!!
   componentWillMount() {
-    this.props.updateFilter(this.props.filters)
+    this.props.updateFilterSummary(this.props.filters);
+    this.props.updateFilterTop20(this.props.filters);
   }
 
   renderFilterList(filters) {
@@ -42,7 +43,10 @@ class FilterList extends React.Component {
           <GridTile key={ filterObj.name } style={ styles.filterStyle } >
             <Filter
               key={ filterObj.name }
-              filterChange={ (updatedFilter) => this.props.updateFilter(this.props.filters, updatedFilter) }
+              filterChange={ (updatedFilter) => {
+                this.props.updateFilterSummary(this.props.filters, updatedFilter)
+                this.props.updateFilterTop20(this.props.filters, updatedFilter)
+              } }
               filterObj={ filterObj } >
             </Filter>
           </GridTile>
@@ -69,7 +73,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ updateFilter: updateFilter }, dispatch);
+  return bindActionCreators({ updateFilterSummary: filterFunctions.updateFilterForSummary,
+                              updateFilterTop20: filterFunctions.updateFilterForTop20,
+                            }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterList);

@@ -7,18 +7,20 @@ import { Treemap, Cell, Label, Tooltip, ResponsiveContainer } from 'recharts';
 import CustomCell from '../components/treemap_cell';
 import CustomTooltip from '../components/treemap_tooltip';
 
-import updateFilter from '../actions/filter_action';
+import updateFilterForSummary from '../actions/filter_action';
 
 import Spinner from '../components/spinner';
 
 const styles = {
   headerStyle: {
-    height: '30px',
-    padding: '10px 10px 0px 10px',
+    height: '47px',
+    padding: '0 10px',
     backgroundColor: 'rgb(255, 255, 255)',
     boxShadow: '2px 2px 8px 0px rgba(0, 0, 0, 0.1)',
     marginBottom: '1px',
     fontSize: '18px',
+    verticalAlign: 'middle',
+    lineHeight: '47px',
   },
   eiFrameStyle: {
     marginRight: '5px',
@@ -67,7 +69,7 @@ class ErrorImpact extends React.Component {
     return (
       <div style={ styles.eiFrameStyle }>
         <div style={ styles.headerStyle }>CATEGORY SMAPE & ERROR IMPACT</div>
-        <ResponsiveContainer width="100%" height={250}>
+        <ResponsiveContainer width="100%" height={305}>
           <Treemap
             data={ this.props.errorImpacts }
             isAnimationActive={false}
@@ -95,7 +97,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ updateFilter: updateFilter }, dispatch);
+  return bindActionCreators({ updateFilter: updateFilterForSummary }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ErrorImpact);

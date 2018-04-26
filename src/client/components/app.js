@@ -11,6 +11,9 @@ import ActualForecast from '../containers/actual_forecast_graph';
 import Smape from '../containers/smape_graph';
 import ErrorImpact from '../containers/error_impact';
 import Top20 from '../containers/top20';
+import Footer from './footer';
+
+console.log(Footer);
 
 import { GridList, GridTile } from 'material-ui/GridList';
 
@@ -49,10 +52,10 @@ const App = () => (
       />
       <div style={ styles.container } >
         <FilterList/>
-        <div style={styles.tableDiv}>
+        <div style={ styles.tableDiv }>
           <DmTable />
         </div>
-        <div style={styles.graphDiv}>
+        <div style={ styles.graphDiv }>
           <ActualForecast />
           <Smape />
         </div>
@@ -63,6 +66,7 @@ const App = () => (
           <Top20 />
         </div>
       </div>
+      <Footer />
     </div>
   </MuiThemeProvider>
 );

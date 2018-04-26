@@ -35,8 +35,8 @@ module.exports = {
       'process.env':{
         'NODE_ENV': JSON.stringify('production') // Required to make react faster, as it doesnt execute any dev checks
       },
-      'API_URL': JSON.stringify('http://localhost:8585')
-      // 'API_URL': JSON.stringify('http://api.stg.forecasting-analytics.prod.walmart.com')
+      // 'API_URL': JSON.stringify('http://localhost:8585')
+      'API_URL': JSON.stringify('http://api.stg.forecasting-analytics.prod.walmart.com')
     }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
@@ -61,6 +61,7 @@ module.exports = {
       minRatio: 0.8
     }),
     new HtmlWebpackPlugin({
+      favicon: './src/client/public/favicon.ico',
       template:'./src/client/index.html',
       filename: 'index.html',
       inject: 'body',

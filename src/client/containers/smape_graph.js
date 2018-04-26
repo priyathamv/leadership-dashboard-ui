@@ -13,7 +13,7 @@ const styles = {
 class Smape extends React.Component {
   constructor(props) {
     super(props);
-
+    const parentThis = this;
     this.state =
     {
       "config":  {
@@ -48,39 +48,28 @@ class Smape extends React.Component {
           "type": "smoothedLine",
           "valueField": "lySmape",
           "balloonText":
-            "<div style='background-color: #FFFFFF; padding: 5px 10px; border-color: #FFFFFF;'>" +
-              "<div style='color: #2E2E2E; margin-bottom: 3px; text-decoration: underline;'><b>Week [[week]]</b></div>" +
-              "<div style='color: #e57373; margin-bottom: 3px;'><b>LY Smape:</b> [[lySmape]]</div>" +
-              "<div style='color: #e53935; margin-bottom: 3px;'><b>TY Smape:</b> [[tySmape]]</div>" +
-            "</div>",
-          "balloonFunction": function(item, graph) {
-            var result = graph.balloonText;
-            for (var key in item.dataContext) {
-              if (item.dataContext.hasOwnProperty(key) && !isNaN(item.dataContext[key])) {
-                var formatted = AmCharts.formatNumber(item.dataContext[key], {
-                  precision: -1,
-                  decimalSeparator: '.',
-                  thousandsSeparator: ','
-                }, 2);
-
-                if (item.dataContext[key] == null || item.dataContext[key] == 0.0)
-                  result = result.replace("[[" + key + "]]", "");
-                else if (key == "week")
-                  result = result.replace("[[" + key + "]]", item.dataContext[key]);
-                else
-                  result = result.replace("[[" + key + "]]", formatted + "%");
-              }
-            }
-            return result;
+            parentThis.balloonText,
+          "balloonFunction": function(item, graph){
+            return parentThis.formatBalloonText(item, graph);
           },
         }, {
           "title": "TY Smape",
           "balloonText": "[[title]]: <b>[[value]]</b>",
           "lineColor": "#e53935",
           "lineThickness": 2,
+          "bullet": "round",
+          "bulletSize": 1,
+          "bulletBorderColor": "#FFFFFF",
+          "bulletBorderAlpha": 1,
+          "bulletBorderThickness": 1,
           "type": "smoothedLine",
           "valueField": "tySmape",
-          "showBalloon": false
+          "showBalloon": false,
+          // "balloonText":
+          //   parentThis.balloonText,
+          // "balloonFunction": function(item, graph){
+          //   return parentThis.formatBalloonText(item, graph);
+          // },
         }],
         "chartCursor": {
           "categoryBalloonEnabled": true,
@@ -89,13 +78,10 @@ class Smape extends React.Component {
         },
         "categoryField": "week",
         "balloon": {
-          "adjustBorderColor": true,
+          "adjustBorderColor": false,
+          "fillAlpha": 0,
           "borderColor": "#FFFFFF",
           "borderThickness": 0,
-          "color": "#000000",
-          "cornerRadius": 1,
-          "fillColor": "#FFFFFF",
-          "textAlign": "left",
         },
         "categoryAxis": {
           "gridPosition": "start",
@@ -107,11 +93,12 @@ class Smape extends React.Component {
         "legend": {
           "markerSize": 10,
           "autoMargins": false,
-          "marginRight": 75,
-          "valueWidth": 90,
+          "marginRight": 40,
+          "valueWidth": 45,
           "fontSize": 10,
           "marginBottom": -5,
           "marginTop": -10,
+          "valueText": "[[value]]%"
         },
         "allLabels": [
       		{
@@ -130,6 +117,37 @@ class Smape extends React.Component {
       	],
       }
     }
+
+    this.balloonText =
+      "<table class='graph-tooltip'>" +
+        "<tbody>" +
+          "<tr><td>Week [[week]]:</td></tr>" +
+          "<tr><td><div class='orange-box'></div>LY Smape:</td><td>[[lySmape]]</td></tr>" +
+          "<tr><td><div class='red-box'></div>TY Smape:</td><td>[[tySmape]]</td></tr>" +
+        "</tbody>" +
+      "</table>";
+
+    this.formatBalloonText = (item, graph) => {
+      var result = this.balloonText;
+      for (var key in item.dataContext) {
+        if (item.dataContext.hasOwnProperty(key) && !isNaN(item.dataContext[key])) {
+          var formatted = AmCharts.formatNumber(item.dataContext[key], {
+            precision: -1,
+            decimalSeparator: '.',
+            thousandsSeparator: ','
+          }, 2);
+
+          if (item.dataContext[key] == null || item.dataContext[key] == 0.0)
+            result = result.replace("[[" + key + "]]", "");
+          else if (key == "week")
+            result = result.replace("[[" + key + "]]", item.dataContext[key]);
+          else
+            result = result.replace("[[" + key + "]]", formatted + "%");
+        }
+      }
+      return result;
+    }
+
   }
 
   renderSmape() {

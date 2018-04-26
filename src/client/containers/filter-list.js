@@ -58,6 +58,7 @@ class FilterList extends React.Component {
   render() {
     return (
       <div style={ styles.root }>
+        <a className='reset-filter' href='/'>Reset Filters</a>
         <GridList style={ styles.gridList } cols={10}>
           { this.renderFilterList(this.props.filters) }
         </GridList>

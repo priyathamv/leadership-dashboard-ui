@@ -5,22 +5,6 @@ import ActionDone from 'material-ui/svg-icons/action/done';
 import ContentClear from 'material-ui/svg-icons/content/clear';
 
 const styles = {
-  categoryStyle: {
-    color: '#1E88E5',
-    textDecoration: 'underline',
-  },
-  goalStyle: {
-    color: '#90CAF9',
-  },
-  twSmapeStyle: {
-    color: '#e53935',
-  },
-  pwSmapeStyle: {
-    color: '#e57373',
-  },
-  errorImpactStyle: {
-    color: '#b71c1c',
-  },
   doneStyles: {
     color: '66BB6A',
     height: '18px',
@@ -43,35 +27,32 @@ const TreemapTooltip  = React.createClass({
     if (active && payload.length) {
       const data = payload[0].payload;
       return (
-        <div className="custom-tooltip">
-          <table>
-            <tr style={styles.categoryStyle}>
-              <td><b>{data.category}</b></td>
-            </tr>
-            <tr style={styles.goalStyle}>
-              <td><b>GOAL:</b> </td>
+        <table className='treemap-tooltip'>
+          <tbody>
+            <tr><td>{data.category}</td></tr>
+            <tr>
+              <td>GOAL:</td>
               <td>
-              {
-                (data.goal > data.twSmape) ?
-                <ActionDone style={ styles.doneStyles } /> :
-                <ContentClear style={ styles.clearStyles } />
-              }
-              {data.goal}%</td>
+                { data.goal }%
+                { (data.goal > data.twSmape) ?
+                  <ActionDone style={ styles.doneStyles } /> :
+                  <ContentClear style={ styles.clearStyles } /> }
+              </td>
             </tr>
-            <tr style={styles.twSmapeStyle}>
-              <td><b>THIS WEEK SMAPE:</b> </td>
-              <td>{data.twSmape}%</td>
+            <tr>
+              <td>THIS WEEK SMAPE:</td>
+              <td>{ data.twSmape }%</td>
             </tr>
-            <tr style={styles.pwSmapeStyle}>
-              <td><b>PREV WEEK SMAPE:</b> </td>
-              <td>{data.pwSmape}%</td>
+            <tr>
+              <td>PREV WEEK SMAPE:</td>
+              <td>{ data.pwSmape }%</td>
             </tr>
-            <tr style={styles.errorImpactStyle}>
-              <td><b>ERROR IMPACT:</b> </td>
-              <td>{data.errorImpact}</td>
+            <tr>
+              <td>ERROR IMPACT:</td>
+              <td>{ data.errorImpact }</td>
             </tr>
-          </table>
-        </div>
+          </tbody>
+        </table>
       );
     }
 

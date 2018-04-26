@@ -30,7 +30,7 @@ export default class TreemapCell extends Component {
           y={y}
           width={width}
           height={height}
-          fill={goal < twSmape ? "#b71c1c" : "#2E7D32"}
+          fill={goal < twSmape ? "#e53935" : "#43A047"}
           stroke="#fff"
           strokeWidth={0.5}
           strokeOpacity={0.8}

@@ -14,6 +14,7 @@ app.get('*.js', function (req, res, next) {
 });
 
 app.use("/static", staticPath);
+// app.use("/favicon.ico", staticPath);
 
 app.get('/health', function(req, res){
   res.json({ message: 'Leadership Dashboard UI working!' });

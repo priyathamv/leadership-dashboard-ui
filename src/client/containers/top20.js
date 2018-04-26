@@ -55,8 +55,6 @@ class Top20 extends React.Component {
   };
 
   render() {
-    console.log("this.props.top20List");
-    console.log(this.props.top20List);
     return (
       <div style={ styles.top20Frame }>
         <Tabs value={ this.state.tabIndex } onChange={ this.handleChange }>

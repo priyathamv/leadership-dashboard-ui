@@ -14,7 +14,7 @@ const styles = {
 class ActualForecast extends React.Component {
   constructor(props) {
     super(props);
-
+    const parentThis = this;
     this.state =
     {
       "config":  {
@@ -49,33 +49,9 @@ class ActualForecast extends React.Component {
           "type": "smoothedLine",
           "valueField": "lyForecast",
           "balloonText":
-            "<div style='background-color: #FFFFFF; padding: 5px 10px; border-color: #FFFFFF;'>" +
-              "<div style='color: #2E2E2E; margin-bottom: 3px; text-decoration: underline;'><b>Week [[week]]</b></div>" +
-              "<div style='color: #E64A19; margin-bottom: 3px;'><b>TY Forecast:</b> [[tyForecast]]</div>" +
-              "<div style='color: #1E88E5; margin-bottom: 3px;'><b>TY Sales:</b> [[tySales]]</div>" +
-              "<div style='color: #FFAB91; margin-bottom: 3px;'><b>LY Forecast:</b> [[lyForecast]]</div>" +
-              "<div style='color: #90CAF9; margin-bottom: 3px;'><b>LY Sales:</b> [[lySales]]</div>" +
-              "<div style='color: #e53935; margin-bottom: -2px;'><b>BIAS:</b> [[bias]]</div>" +
-            "</div>",
-          "balloonFunction": function(item, graph) {
-            var result = graph.balloonText;
-            for (var key in item.dataContext) {
-              if (item.dataContext.hasOwnProperty(key) && !isNaN(item.dataContext[key])) {
-                var formatted = AmCharts.formatNumber(item.dataContext[key], {
-                  precision: -1,
-                  decimalSeparator: '.',
-                  thousandsSeparator: ','
-                }, 2);
-
-                if (item.dataContext[key] == null || item.dataContext[key] == 0.0)
-                  result = result.replace("[[" + key + "]]", "");
-                else if (key == "week")
-                  result = result.replace("[[" + key + "]]", item.dataContext[key]);
-                else
-                  result = result.replace("[[" + key + "]]", formatted);
-              }
-            }
-            return result;
+            parentThis.balloonText,
+          "balloonFunction": function(item, graph){
+            return parentThis.formatBalloonText(item, graph);
           },
         }, {
           "title": "LY Sales",
@@ -89,7 +65,11 @@ class ActualForecast extends React.Component {
           "bulletBorderThickness": 1,
           "type": "smoothedLine",
           "valueField": "lySales",
-          "showBalloon": false
+          "balloonText":
+            parentThis.balloonText,
+          "balloonFunction": function(item, graph){
+            return parentThis.formatBalloonText(item, graph);
+          },
         }, {
           "title": "TY Forecast",
           "balloonText": "[[title]]: <b>[[value]]</b>",
@@ -97,7 +77,11 @@ class ActualForecast extends React.Component {
           "lineThickness": 2,
           "type": "smoothedLine",
           "valueField": "tyForecast",
-          "showBalloon": false
+          "balloonText":
+            parentThis.balloonText,
+          "balloonFunction": function(item, graph){
+            return parentThis.formatBalloonText(item, graph);
+          },
         }, {
           "title": "TY Sales",
           "balloonText": "[[title]]: <b>[[value]]</b>",
@@ -105,7 +89,11 @@ class ActualForecast extends React.Component {
           "lineThickness": 2,
           "type": "smoothedLine",
           "valueField": "tySales",
-          "showBalloon": false
+          "balloonText":
+            parentThis.balloonText,
+          "balloonFunction": function(item, graph){
+            return parentThis.formatBalloonText(item, graph);
+          },
         }],
         "chartCursor": {
           "categoryBalloonEnabled": true,
@@ -114,13 +102,10 @@ class ActualForecast extends React.Component {
         },
         "categoryField": "week",
         "balloon": {
-          "adjustBorderColor": true,
+          "adjustBorderColor": false,
+          "fillAlpha": 0,
           "borderColor": "#FFFFFF",
           "borderThickness": 0,
-          "color": "#000000",
-          "cornerRadius": 1,
-          "fillColor": "#FFFFFF",
-          "textAlign": "left",
         },
         "categoryAxis": {
           "gridPosition": "start",
@@ -154,6 +139,44 @@ class ActualForecast extends React.Component {
       		}
       	],
       }
+    }
+
+    this.balloonText =
+    "<table class='graph-tooltip'>" +
+      "<tbody>" +
+        "<tr><td>Week [[week]]:</td></tr>" +
+        "<tr><td><div class='red-box'></div>TY Forecast:</td><td>[[tyForecast]]</td></tr>" +
+        "<tr><td><div class='darkblue-box'></div>TY Sales:</td><td>[[tySales]]</td></tr>" +
+        "<tr><td><div class='orange-box'></div>LY Forecast:</td><td>[[lyForecast]]</td></tr>" +
+        "<tr><td><div class='skyblue-box'></div>LY Sales:</td><td>[[lySales]]</td></tr>" +
+        "<tr><td><div class='red-box'></div>Bias</td><td>[[bias]]</td></tr>" +
+      "</tbody>" +
+    "</table>";
+
+    this.formatBalloonText = (item, graph) => {
+      var result = this.balloonText;
+      for (var key in item.dataContext) {
+        if (item.dataContext.hasOwnProperty(key) && !isNaN(item.dataContext[key])) {
+          const valueInMillions = item.dataContext[key]/1000000;
+          var formatted = AmCharts.formatNumber(valueInMillions, {
+            precision: 0,
+            decimalSeparator: '.',
+            thousandsSeparator: ''//','
+          });
+
+          // To display nothing on tooltip when the value is null or 0
+          if (item.dataContext[key] == null || item.dataContext[key] == 0.0)
+            result = result.replace("[[" + key + "]]", "");
+          else if (key == "week")
+            result = result.replace("[[" + key + "]]", item.dataContext[key]);
+          else{
+            result = result.replace("[[" + key + "]]", "[[" + key + "]]M");
+            result = result.replace("[[" + key + "]]", formatted);
+          }
+
+        }
+      }
+      return result;
     }
   }
 

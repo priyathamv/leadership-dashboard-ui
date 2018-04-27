@@ -7,7 +7,7 @@ import { Treemap, Cell, Label, Tooltip, ResponsiveContainer } from 'recharts';
 import CustomCell from '../components/treemap_cell';
 import CustomTooltip from '../components/treemap_tooltip';
 
-import updateFilterForSummary from '../actions/filter_action';
+import * as filterFunctions from '../actions/filter_action';
 
 import Spinner from '../components/spinner';
 
@@ -62,6 +62,7 @@ class ErrorImpact extends React.Component {
   }
 
   handleCategoryClick(d) {
+    this.props.waitForApiResponse();
     this.props.updateFilter(this.props.filters, { filterName: "CATEGORY", currentFilter: d.category });
   }
 
@@ -97,7 +98,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ updateFilter: updateFilterForSummary }, dispatch);
+  return bindActionCreators({ updateFilter: filterFunctions.updateFilterForSummary,
+                              waitForApiResponse: filterFunctions.waitForApiResponse,
+                            }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ErrorImpact);

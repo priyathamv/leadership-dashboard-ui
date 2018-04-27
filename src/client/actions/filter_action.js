@@ -24,6 +24,12 @@ export function updateFilterForTop20(currentFilters, updatedFilter) {
   };
 }
 
+export function waitForApiResponse() {
+  return {
+    type: 'WAIT_FOR_API_RESPONSE'
+  }
+}
+
 function getQueryParams(currentFilters, updatedFilter) {
   var node        = "STORE",
       ltMetric    = "LEAD TIME",

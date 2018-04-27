@@ -44,8 +44,9 @@ class FilterList extends React.Component {
             <Filter
               key={ filterObj.name }
               filterChange={ (updatedFilter) => {
-                this.props.updateFilterSummary(this.props.filters, updatedFilter)
-                this.props.updateFilterTop20(this.props.filters, updatedFilter)
+                this.props.waitForApiResponse();
+                this.props.updateFilterSummary(this.props.filters, updatedFilter);
+                this.props.updateFilterTop20(this.props.filters, updatedFilter);
               } }
               filterObj={ filterObj } >
             </Filter>
@@ -76,6 +77,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ updateFilterSummary: filterFunctions.updateFilterForSummary,
                               updateFilterTop20: filterFunctions.updateFilterForTop20,
+                              waitForApiResponse: filterFunctions.waitForApiResponse,
                             }, dispatch);
 }
 

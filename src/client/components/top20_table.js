@@ -51,7 +51,6 @@ export default class Top20Table extends React.Component {
       })
     )
   }
-
   render() {
     return (
       <Table wrapperStyle={ styles.tableStyle }>

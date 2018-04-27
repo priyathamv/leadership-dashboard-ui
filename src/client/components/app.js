@@ -13,8 +13,6 @@ import ErrorImpact from '../containers/error_impact';
 import Top20 from '../containers/top20';
 import Footer from './footer';
 
-console.log(Footer);
-
 import { GridList, GridTile } from 'material-ui/GridList';
 
 const styles = {

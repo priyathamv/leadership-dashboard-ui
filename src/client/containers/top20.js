@@ -17,14 +17,10 @@ import Spinner from '../components/spinner';
 const styles = {
   top20Frame: {
     height: '353px',
+    position: 'relative',
   },
   tableStyle: {
     boxShadow: '2px 2px 8px 0px rgba(0, 0, 0, 0.1)',
-  },
-  spinnerStyle: {
-    position: 'absolute',
-    top: '42%',
-    left: '41%',
   },
   rowStyle: {
     height: '40px',
@@ -37,7 +33,12 @@ const styles = {
     boxShadow: '2px 2px 8px 0px rgba(0, 0, 0, 0.1)',
     marginBottom: '1px',
     fontSize: '18px',
-  }
+  },
+  spinnerStyle: {
+    position: 'absolute',
+    top: '45%',
+    left: '45%',
+  },
 }
 
 class Top20 extends React.Component {
@@ -70,6 +71,7 @@ class Top20 extends React.Component {
             <Top20Table top20List={ this.props.top20List.subcatTop20List } />
           </Tab>
         </Tabs>
+        { this.props.isLoading && <Spinner style={ styles.spinnerStyle } /> }
       </div>
     )
   }
@@ -77,7 +79,8 @@ class Top20 extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    top20List: state.top20List
+    top20List: state.top20List,
+    isLoading: state.top20List.isLoading,
   }
 }
 

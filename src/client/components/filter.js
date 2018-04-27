@@ -15,6 +15,9 @@ const styles = {
     fontSize: '16px',
     color: '#848484',
   },
+  fontSize: {
+    fontSize: '10px',
+  },
 }
 
 export default class Filter extends React.Component {
@@ -52,6 +55,7 @@ export default class Filter extends React.Component {
           value={ this.props.filterObj.currentValue }
           onChange={ this.handleFilterChange }
           selectedMenuItemStyle={ styles.activeColor }
+          menuItemStyle={ styles.fontSize }
           style={ styles.selectStyle }
           floatingLabelFixed={ true }
           autoWidth={ true }

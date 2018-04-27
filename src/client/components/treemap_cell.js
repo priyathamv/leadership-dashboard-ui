@@ -30,7 +30,7 @@ export default class TreemapCell extends Component {
           y={y}
           width={width}
           height={height}
-          fill={goal < twSmape ? "#e53935" : "#43A047"}
+          fill={(goal > twSmape || goal == 0) ? "#43A047" : "#e53935" }
           stroke="#fff"
           strokeWidth={0.5}
           strokeOpacity={0.8}
@@ -38,14 +38,14 @@ export default class TreemapCell extends Component {
         {
           depth === 1 ? (
           <text
-            x={x + width / 2}
-            y={y + height / 2 + 9}
+            x={x + 50}
+            y={y + 18}
             textAnchor="middle"
             fill="#fff"
             stroke="none"
-            fontSize={12}
+            fontSize={8}
           >
-            {(width > 100 && height > 50) ? category : ""}
+            {(width > 100 && height > 50 && category.length < 20 ) ? category : ""}
           </text> )
           : null
         }

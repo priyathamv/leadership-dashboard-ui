@@ -28,7 +28,7 @@ class ActualForecast extends React.Component {
           "position": "left",
           "autoGridCount": false,
           "labelFunction": function(value) {
-            return Math.round(value/1000000) + "M";
+            return (value > 1000000) ? (Math.round(value/1000000) + "M") : value;
           },
           "gridColor": "#E6E6E6",
           "gridAlpha": 0.2,
@@ -157,21 +157,38 @@ class ActualForecast extends React.Component {
       var result = this.balloonText;
       for (var key in item.dataContext) {
         if (item.dataContext.hasOwnProperty(key) && !isNaN(item.dataContext[key])) {
-          const valueInMillions = item.dataContext[key]/1000000;
-          var formatted = AmCharts.formatNumber(valueInMillions, {
-            precision: 0,
-            decimalSeparator: '.',
-            thousandsSeparator: ''//','
-          });
+          const value = item.dataContext[key];
+          const isValueInMillions = (value > 1000000 || value < -1000000);
 
-          // To display nothing on tooltip when the value is null or 0
-          if (item.dataContext[key] == null || item.dataContext[key] == 0.0)
-            result = result.replace("[[" + key + "]]", "");
-          else if (key == "week")
-            result = result.replace("[[" + key + "]]", item.dataContext[key]);
-          else{
-            result = result.replace("[[" + key + "]]", "[[" + key + "]]M");
-            result = result.replace("[[" + key + "]]", formatted);
+          if(isValueInMillions) {
+            var formatted = AmCharts.formatNumber(value/1000000, {
+              precision: 0,
+              decimalSeparator: '.',
+              thousandsSeparator: ''//','
+            });
+
+            // To display nothing on tooltip when the value is null or 0
+            if (value == null || value == 0.0)
+              result = result.replace("[[" + key + "]]", "");
+            else if (key == "week")
+              result = result.replace("[[" + key + "]]", value);
+            else{
+              result = result.replace("[[" + key + "]]", "[[" + key + "]]M");
+              result = result.replace("[[" + key + "]]", formatted);
+            }
+          } else {
+            var formatted = AmCharts.formatNumber(value, {
+              precision: 0,
+              decimalSeparator: '.',
+              thousandsSeparator: ','
+            });
+
+            if (value == null || value == 0.0)
+              result = result.replace("[[" + key + "]]", "");
+            else if (key == "week")
+              result = result.replace("[[" + key + "]]", value);
+            else
+              result = result.replace("[[" + key + "]]", formatted);
           }
 
         }

@@ -17,6 +17,14 @@ const styles = {
     height: '40px',
     padding: '5px 10px',
   },
+  firstColumnStyle: {
+    height: '40px',
+    padding: '5px 10px',
+    width: '8em',
+    minWidth: '8em',
+    maxWidth: '8em',
+    wordBreak: 'break-all',
+  },
 }
 
 
@@ -24,7 +32,7 @@ class DmRow extends React.Component {
   render() {
     return (
       <TableRow style={ styles.rowStyle }>
-        <TableRowColumn style={ styles.rowStyle }>
+        <TableRowColumn style={ styles.firstColumnStyle }>
           <span>{ this.props.dmPerformance.name }</span>
         </TableRowColumn>
 

@@ -30,6 +30,14 @@ const styles = {
     height: '40px',
     padding: '5px 10px',
   },
+  firstColumnStyle: {
+    height: '40px',
+    padding: '5px 10px',
+    width: '8em',
+    minWidth: '8em',
+    maxWidth: '8em',
+    wordBreak: 'break-all',
+  },
   headerStyle: {
     height: '47px',
     backgroundColor: 'rgb(255, 255, 255)',
@@ -66,7 +74,7 @@ class DmTable extends React.Component {
         <Table wrapperStyle={ styles.tableStyle }>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow style={ styles.rowStyle }>
-              <TableHeaderColumn style={ styles.rowStyle }>TIMELINE</TableHeaderColumn>
+              <TableHeaderColumn style={ styles.firstColumnStyle }>TIMELINE</TableHeaderColumn>
               <TableHeaderColumn style={ styles.rowStyle }>TY SMAPE</TableHeaderColumn>
               <TableHeaderColumn style={ styles.rowStyle }>GOAL</TableHeaderColumn>
               <TableHeaderColumn style={ styles.rowStyle }>DIFF</TableHeaderColumn>

@@ -5,7 +5,7 @@ const initialErrorImpacts = {
 
 export default function(state = initialErrorImpacts, action) {
   switch (action.type) {
-    case 'FILTER_CHANGED':
+    case 'MULTI_FILTER_CHANGED':
       return Object.assign({}, { isLoading: false, data: action.payload.data.errorImpact });
     case 'WAIT_FOR_API_RESPONSE':
       return Object.assign(state, { isLoading: true });

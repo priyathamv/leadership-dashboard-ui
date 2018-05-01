@@ -26,13 +26,39 @@ export default class Top20Table extends React.Component {
     super(props);
   }
 
+  commaSeperatedValue(bigValue) {
+    var bigValueStr = "" + bigValue;
+    var finalValue  = "";
+    var count = 0;
+    for(var i=bigValueStr.length-1; i>=0; i--){
+      if(count !=0 && count % 3 == 0)
+        finalValue = "," + finalValue;
+      finalValue = bigValueStr[i] + finalValue;
+      count++;
+    }
+    return finalValue;
+  }
+
   renderTop20Rows(top20List) {
+    console.log(this.commaSeperatedValue(1));
+    console.log(this.commaSeperatedValue(12));
+    console.log(this.commaSeperatedValue(12));
+    console.log(this.commaSeperatedValue(123));
+    console.log(this.commaSeperatedValue(1234));
+    console.log(this.commaSeperatedValue(12345));
+    console.log(this.commaSeperatedValue(123456));
+    console.log(this.commaSeperatedValue(1234567));
+    console.log(this.commaSeperatedValue(12345678));
+    console.log(this.commaSeperatedValue(123456789));
+    console.log(this.commaSeperatedValue(1234567898));
     return (
       top20List.map(top20Record => {
         return (
           <TableRow style={ styles.rowStyle }>
             <TableRowColumn style={ styles.rowStyle } style={{width: '35%'}} >
-              <span>{ top20Record.description }</span>
+              <span className="tooltip">{ top20Record.description }
+                <div className="tooltiptext">{ top20Record.description }</div>
+              </span>
             </TableRowColumn>
 
             <TableRowColumn style={ styles.rowStyle }>
@@ -40,11 +66,11 @@ export default class Top20Table extends React.Component {
             </TableRowColumn>
 
             <TableRowColumn style={ styles.rowStyle }>
-              <span>{ top20Record.sales }</span>
+              <span>{ this.commaSeperatedValue(top20Record.sales) }</span>
             </TableRowColumn>
 
             <TableRowColumn style={ styles.rowStyle }>
-              <span>{ top20Record.forecast }</span>
+              <span>{ this.commaSeperatedValue(top20Record.forecast) }</span>
             </TableRowColumn>
           </TableRow>
         )

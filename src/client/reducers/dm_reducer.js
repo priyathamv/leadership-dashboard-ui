@@ -34,7 +34,7 @@ const initialDmPerformances = {
 
 export default function(state = initialDmPerformances, action) {
   switch (action.type) {
-    case 'FILTER_CHANGED':
+    case 'MULTI_FILTER_CHANGED':
       return Object.assign({}, { isLoading: false, data: action.payload.data.dmGoals.dmPerformances });
     case 'WAIT_FOR_API_RESPONSE':
       return Object.assign(state, { isLoading: true });

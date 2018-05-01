@@ -5,13 +5,8 @@ body {
   background-color: #F2F2F2;
 }
 
-.reset-filter {
-  color: #0277BD;
-  position: absolute;
-  right: 30px;
-  font-size: 13px;
-  margin: 4px;
-  z-index: 100;
+.filter-popover {
+  font-size: 12px;
 }
 
 .footer {
@@ -94,6 +89,42 @@ body {
   display: inline-block;
   margin-right: 3px;
   margin-bottom: -2px;
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: auto;
+  background-color: black;
+  color: #FFFFFF;
+  border-radius: 4px;
+  padding: 3px 10px;
+  position: absolute;
+  bottom: 110%;
+  font-size: 9px;
+  opacity: 0.8;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 88%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+span:hover + div {
+  display: block;
 }
 
 .spinner {

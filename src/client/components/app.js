@@ -6,6 +6,7 @@ import IconButton from 'material-ui/IconButton';
 import WalmartLogo from './walmart_logo';
 
 import FilterList from '../containers/filter-list';
+import MultiFilterList from '../containers/multi-filter-list';
 import DmTable from '../containers/dm_table';
 import ActualForecast from '../containers/actual_forecast_graph';
 import Smape from '../containers/smape_graph';
@@ -22,7 +23,7 @@ const styles = {
   filtersStyle: {
     height: "100px"
   },
-  tableDiv: {
+  dmTableDiv: {
     width: "40%",
     display: "inline-block",
   },
@@ -40,7 +41,7 @@ const styles = {
     display: "inline-block",
   },
 };
-
+// <FilterList />
 const App = () => (
   <MuiThemeProvider>
     <div>
@@ -49,18 +50,18 @@ const App = () => (
         title="Forecasting Analytics Dashboard - Store"
       />
       <div style={ styles.container } >
-        <FilterList/>
-        <div style={ styles.tableDiv }>
+        <MultiFilterList />
+        <div id="dmTableDiv" style={ styles.dmTableDiv }>
           <DmTable />
         </div>
-        <div style={ styles.graphDiv }>
+        <div id="graphDiv" style={ styles.graphDiv }>
           <ActualForecast />
           <Smape />
         </div>
-        <div style={ styles.errorImpactDiv }>
+        <div id="errorImpactDiv" style={ styles.errorImpactDiv }>
           <ErrorImpact />
         </div>
-        <div style={ styles.Top20Div }>
+        <div id="top20Div" style={ styles.Top20Div }>
           <Top20 />
         </div>
       </div>

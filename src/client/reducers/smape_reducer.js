@@ -1,6 +1,6 @@
 export default function(state = [], action) {
   switch (action.type) {
-    case 'FILTER_CHANGED':
+    case 'MULTI_FILTER_CHANGED':
       return action.payload.data.forecastActualsAndSmape.smapes;
     default:
       return state;

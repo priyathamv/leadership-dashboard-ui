@@ -57,19 +57,9 @@ class Smape extends React.Component {
           "balloonText": "[[title]]: <b>[[value]]</b>",
           "lineColor": "#e53935",
           "lineThickness": 2,
-          "bullet": "round",
-          "bulletSize": 1,
-          "bulletBorderColor": "#FFFFFF",
-          "bulletBorderAlpha": 1,
-          "bulletBorderThickness": 1,
           "type": "smoothedLine",
           "valueField": "tySmape",
           "showBalloon": false,
-          // "balloonText":
-          //   parentThis.balloonText,
-          // "balloonFunction": function(item, graph){
-          //   return parentThis.formatBalloonText(item, graph);
-          // },
         }],
         "chartCursor": {
           "categoryBalloonEnabled": true,
@@ -151,7 +141,6 @@ class Smape extends React.Component {
   }
 
   renderSmape() {
-
     var configUpdated = (this.props.smapeList.length > 0 ) ?
       Object.assign({}, this.state.config, {dataProvider: this.props.smapeList, allLabels: []}) :
       Object.assign({}, this.state.config, {dataProvider: this.props.smapeList});

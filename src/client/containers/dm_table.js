@@ -54,7 +54,14 @@ class DmTable extends React.Component {
 
   constructor(props) {
     super(props);
+    // this.state = {
+    //   isLoading: true
+    // }
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState({ isLoading: false });
+  // }
 
   renderTableRows() {
     return (
@@ -69,7 +76,7 @@ class DmTable extends React.Component {
   render() {
     return (
       <div style={ styles.dmFrameStyle }>
-        <div style={ styles.headerStyle }>DM PERFORMANCE (Current Week - 11811)</div>
+        <div style={ styles.headerStyle }>DM PERFORMANCE (Current Week - 11813)</div>
 
         <Table wrapperStyle={ styles.tableStyle }>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>

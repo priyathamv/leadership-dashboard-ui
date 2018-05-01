@@ -54,20 +54,10 @@ class MultiFilterList extends React.Component {
     this.props.updateFilterTop20(this.props.filters);
   }
 
-  // joinFilterList(filterObject) {
-  //   return (typeof filterObject.value === 'string') ?
-  //           filterObject.value :
-  //           filterObject.value.map(valueObj => valueObj.value).join("|");
-  // }
-
   handleFilterChange(updatedFilter) {
-    // var newFilters = this.props.filters.map(curFilter => {
-    //   return Object.assign(curFilter, { value: this.joinFilterList(curFilter) })
-    // });
     this.props.waitForApiResponse();
     this.props.updateFilterSummary(this.props.filters, updatedFilter);
     this.props.updateFilterTop20(this.props.filters, updatedFilter);
-    this.forceUpdate();
   }
 
   renderMultiFilterList(filters) {

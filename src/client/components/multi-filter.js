@@ -4,8 +4,8 @@ import SuperSelectField from 'material-ui-superselectfield';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 import { teal500, pink500, teal200, pink200, yellow500, yellow200, deepPurple500 } from 'material-ui/styles/colors';
 import ArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
-import CheckedIcon from 'material-ui/svg-icons/toggle/radio-button-checked';
-import UnCheckedIcon from 'material-ui/svg-icons/toggle/radio-button-unchecked';
+import CheckedIcon from 'material-ui/svg-icons/navigation/check';
+import UnCheckedIcon from 'material-ui/svg-icons/toggle/check-box-outline-blank';
 
 const styles = {
   rootStyle: {
@@ -23,10 +23,11 @@ const styles = {
   },
   menuItem: {
     fontSize: '12px',
-    padding: '7px 15px',
+    padding: '7px 15px 7px 40px',
   },
   menuItemSelected: {
     color: '#00BCD4',
+    backgroundColor: '#FFFFFF',
   },
   selectedItemStyle: {
     whiteSpace: 'nowrap',
@@ -42,6 +43,10 @@ const styles = {
   anchorStyle: {
     vertical: 'bottom',
     horizontal: 'left'
+  },
+  menuItemSingle: {
+    fontSize: '12px',
+    padding: '7px 15px',
   },
 }
 
@@ -84,16 +89,33 @@ export default class MultiFilter extends React.Component {
     return singleFilterNames.indexOf(this.state.filterObj.name) == -1
   }
 
-  handleChange = (values, name) => {
-    var currentFilter;
-    if (values.value) // Single select
-      currentFilter = values.value;
-    else if (values.length == 0) // No option selected (ALL default)
-      currentFilter = "ALL";
-    else
-      currentFilter = values.map(valueObj => valueObj.value).join("|");
-    this.props.filterChange({ name: name,
-                              value: currentFilter });
+  handleChange = (newFilterValues, name) => {
+    var isFilterChanged = false;
+    const oldFilterValues = this.props.filterObj.valueAsListOfStrings;
+
+    if (newFilterValues.value) {
+      isFilterChanged =  !(newFilterValues.value && oldFilterValues.length && newFilterValues.value == oldFilterValues[0]);
+    } else {
+      isFilterChanged = !(newFilterValues.length == oldFilterValues.length);
+      for(var property in newFilterValues){
+        if( !(oldFilterValues.indexOf(newFilterValues[property].value) > -1) ){
+          isFilterChanged = true;
+          break;
+        }
+      }
+    }
+
+    if(isFilterChanged){
+      var currentFilter;
+      if (newFilterValues.value) // Single select
+        currentFilter = newFilterValues.value;
+      else if (newFilterValues.length == 0) // No option selected (ALL default)
+        currentFilter = "ALL";
+      else
+        currentFilter = newFilterValues.map(valueObj => valueObj.value).join("|");
+      this.props.filterChange({ name: name,
+                                value: currentFilter });
+    }
   }
 
   selectionRendererDiv = (values, hintText) => {
@@ -139,7 +161,7 @@ export default class MultiFilter extends React.Component {
           floatingLabelStyle={ styles.floatLabel }
           floatingLabelFocusStyle={ styles.floatLabelFocus }
 
-          innerDivStyle={ styles.menuItem }
+          innerDivStyle={ this.isMultiSelect() ? styles.menuItem : styles.menuItemSingle }
           selectedMenuItemStyle={ styles.menuItemSelected }
 
           popoverWidth={ 200 }
@@ -150,6 +172,11 @@ export default class MultiFilter extends React.Component {
 
           selectAllButton={ <FlatButton label='select all' hoverColor='rgba(69, 90, 100, 0.1)' labelStyle={ styles.selectAll } fullWidth /> }
           resetButton={ <FlatButton label='reset' hoverColor='rgba(69, 90, 100, 0.1)' labelStyle={ styles.selectAll } fullWidth /> }
+
+          canAutoPosition={ true }
+          checkPosition="left"
+          checkedIcon={ <CheckedIcon style={{ top: 'calc(50% - 12px)', marginLeft: '5px', }} /> }
+          unCheckedIcon={ <UnCheckedIcon style={{ top: 'calc(50% - 12px)', marginLeft: '5px', }} /> }
 
           hintTextAutocomplete={ AutocompleteText }
           onChange={ this.handleChange }

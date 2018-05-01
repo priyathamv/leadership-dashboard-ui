@@ -40,17 +40,6 @@ export default class Top20Table extends React.Component {
   }
 
   renderTop20Rows(top20List) {
-    console.log(this.commaSeperatedValue(1));
-    console.log(this.commaSeperatedValue(12));
-    console.log(this.commaSeperatedValue(12));
-    console.log(this.commaSeperatedValue(123));
-    console.log(this.commaSeperatedValue(1234));
-    console.log(this.commaSeperatedValue(12345));
-    console.log(this.commaSeperatedValue(123456));
-    console.log(this.commaSeperatedValue(1234567));
-    console.log(this.commaSeperatedValue(12345678));
-    console.log(this.commaSeperatedValue(123456789));
-    console.log(this.commaSeperatedValue(1234567898));
     return (
       top20List.map(top20Record => {
         return (

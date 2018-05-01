@@ -18,7 +18,6 @@ export function updateFilterForTop20(currentFilters, updatedFilter) {
   const request_url     = `${API_URL}/api/top-20?${queryParams}`;
   const top20Promise    = axios.get(request_url);
 
-  console.log("Top20 api URL", request_url);
   return {
     type: 'FILTER_CHANGED_TOP20',
     payload: top20Promise,

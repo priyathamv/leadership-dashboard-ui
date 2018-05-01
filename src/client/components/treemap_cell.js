@@ -20,9 +20,17 @@ export default class TreemapCell extends Component {
     super(props);
   }
 
+  fillColor(goal, twSmape, category) {
+    if(!category)
+      return "#FFFFFF";
+    else if (goal > twSmape || goal == 0)
+      return "#43A047";
+    else
+      return "#e53935"
+  }
+
   render() {
     const { depth, x, y, width, height, index, goal, twSmape, category } = this.props;
-
     return (
       <g>
         <rect
@@ -30,10 +38,11 @@ export default class TreemapCell extends Component {
           y={y}
           width={width}
           height={height}
-          fill={(goal > twSmape || goal == 0) ? "#43A047" : "#e53935" }
+          fill={ this.fillColor(goal, twSmape, category) }
           stroke="#fff"
           strokeWidth={0.5}
           strokeOpacity={0.8}
+          style={{cursor: 'pointer'}}
         />
         {
           depth === 1 ? (
